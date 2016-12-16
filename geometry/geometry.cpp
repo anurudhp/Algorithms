@@ -1,8 +1,10 @@
-typedef long long Cord;
-struct Point {
-  Cord x, y;
-};
-const Cord INF = 1e9;
+typedef long double Cord;
+const Cord INF = 1e18, EPS = 1e-9;
+const Cord PI = acos(-1);
+bool isZero(Cord val) { return (-EPS < val && val < EPS); }
+Cord ABS(Cord val) { return val >= 0 ? val : -val; }
+
+struct Point { Cord x, y; };
 typedef pair<Point, Point> Segment;
 typedef vector<Point> PointList;
 
@@ -25,10 +27,16 @@ Cord Determ(Point A, Point B, Point C) {
 #define cwl(...)  (Determ(__VA_ARGS__) >= 0)
 #define ccwl(...) (Determ(__VA_ARGS__) <= 0)
 
-Cord dist(Point a, Point b) {
+Cord dist2(Point a, Point b) {
   Cord dx = a.x - b.x;
   Cord dy = a.y - b.y;
   return (dx * dx + dy * dy);
+}
+Cord dist2(Segment s) {
+  return dist2(s.first, s.second);
+}
+Cord dist(Point a, Point b) {
+  return sqrt(dist(a, b));
 }
 Cord dist(Segment s) {
   return dist(s.first, s.second);
