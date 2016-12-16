@@ -1,4 +1,7 @@
 *.in
 *.out
+*.o
+*.s
+*.S
 *.ut.cpp
 test.cpp
