@@ -1,6 +1,6 @@
 class Dinics {
 public:
-	typedef int flowType;
+	typedef int flowType; // can use float/double
 	static const flowType INF = 1e9; // maximum capacity
 	static const flowType EPS = 0; // minimum capacity/flow change
 
@@ -55,9 +55,9 @@ public:
 		work(n, 0), g(n), nodes(n) {}
 
 	// s->t (cap); t->s (rcap)
-	void addEdge(int s, int t, flowType cap, flowType rcap = 0){
+	void addEdge(int s, int t, flowType cap, flowType rcap = 0) {
 	  g[s].push_back({t, (int) g[t].size(), 0, cap});
-	  g[t].push_back({s, (int) g[s].size(), 0, rcap});
+	  g[t].push_back({s, (int) g[s].size() - 1, 0, rcap});
 	}
 	flowType maxFlow(int _src, int _dest) {
 	  src = _src;
