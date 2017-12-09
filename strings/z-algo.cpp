@@ -23,7 +23,7 @@ void computeZ() {
 		}
 		while(s[i+z[i]]==s[z[i]]) ++z[i];
 		if(i+z[i]-1 > r) {
-			r=z[i];
+			r=i+z[i]-1;
 			l=i;
 		}
 	}
