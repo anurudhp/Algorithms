@@ -1,0 +1,9 @@
+divide_conquer
+IOI_aliens_dp_trick 
+sos dp
+knuth optimisation
+TreapLazy.cpp
+TreapSubsetSumDP.cpp
+Wavelet_trees.cpp
+Centroid.cpp
+mo_updates.cpp
