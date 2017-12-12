@@ -1,5 +1,3 @@
-// FFT
-
 // Make 2 vector<base> a and b with values: coefficient of x^0, x^1, x^2 ...
 // Resize them to double the size as powers double after multiplication.
 // Then call fft(a, 0) and fft(b, 0) to convert them to point form.
