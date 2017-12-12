@@ -4,13 +4,9 @@
 // Then multiply using ans[i] = a[i]*b[i].
 // Then call fft(ans, 1) to get back to coefficient form.
 
-#include <bits/stdc++.h>
-#define fr(x) scanf("%d",&x)
-using namespace std;
 #define base complex<double>
 const double PI=acos(-1);
-vector<base> a, ans;
-
+vector<base> a, ans; // variables
 inline void fft(vector<base> &a, bool invert) {
 	int logn=0, n=a.size();
 	while((1<<logn)<n) ++logn;
@@ -36,11 +32,7 @@ inline void fft(vector<base> &a, bool invert) {
 			}
 		}
 	}
-	if(invert) {
-		for(int i=0; i<n; ++i) {
-			a[i] /= n;
-		}
-	}
+	if(invert) for(int i=0; i<n; ++i) a[i] /= n;
 }
 
 // This function exponentiates a polynomial to degree k.
@@ -52,8 +44,7 @@ inline void exp(int k) {
 			a.resize(max(ans.size(),a.size()));
 			a.resize(a.size()<<1);
 			ans.resize(ans.size()<<1);
-			fft(a, 0);
-			fft(ans, 0);
+			fft(a, 0); fft(ans, 0);
 			for(int i=0; i<ans.size(); ++i) {
 				ans[i]*=a[i];
 			}
@@ -65,9 +56,7 @@ inline void exp(int k) {
 			fft(a, 1);
 			k=(k^(1<<i));
 		}
-		else {
-			a.resize(a.size()<<1);
-		}
+		else a.resize(a.size()<<1);
 		fft(a, 0);
 		for(int i=0;i<a.size();++i){
 			a[i] = a[i]*a[i];
@@ -78,20 +67,4 @@ inline void exp(int k) {
 			else a[i]=0;
 		}
 	}
-}
-
-int main(){
-	int n, k, temp;
-	fr(n);
-	fr(k);
-	a.resize(1024);
-	for(int i=1; i<=n; ++i) {
-		fr(temp);
-		a[temp]=1;
-	}
-	exp(k);
-	for(int i=0; i<ans.size(); ++i) {
-		if(real(ans[i])>0.5) printf("%d ",i);
-	}
-	return 0;
 }

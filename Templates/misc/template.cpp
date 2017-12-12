@@ -12,3 +12,5 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
 typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
+
+// compiler options: -Wall -std=c++11 -g [-O2-Wno-reorder]
