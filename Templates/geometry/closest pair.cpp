@@ -1,15 +1,14 @@
 const Segment InfSegment = {{-INF, -INF}, {INF, INF}};
+coord adis2(coord a, coord b) { return (a - b) * (a - b); }
 
-Cord adis2(Cord a, Cord b) { return (a - b) * (a - b); }
-
-Segment closest_pair_rec(PointList Px, PointList Py) {
+Segment closest_pair_rec(vector<Point> Px, vector<Point> Py) {
   int n = Px.size();
   if (n < 2) return InfSegment;
   if (n == 2) return make_pair(Px[0], Px[1]);
 
   int m = n / 2;
-  PointList Pxl(Px.begin(), Px.begin() + m), Pxr(Px.begin() + m, Px.end());
-  PointList Pyl, Pyr;
+  vector<Point> Pxl(Px.begin(), Px.begin() + m), Pxr(Px.begin() + m, Px.end());
+  vector<Point> Pyl, Pyr;
   Pyl.reserve(Pxl.size()); // prevent allocation/resize overhead
   Pyr.reserve(Pxr.size()); // --do--
 
@@ -21,12 +20,12 @@ Segment closest_pair_rec(PointList Px, PointList Py) {
   auto resl = closest_pair_rec(Pxl, Pyl);
   auto resr = closest_pair_rec(Pxr, Pyr);
   auto res = (dist2(resl) < dist2(resr)) ? resl : resr;
-  Cord mindis = dist2(res);
+  coord mindis = dist2(res);
 
   Pxl.clear(); Pyl.clear();
   Pxr.clear(); Pyr.clear();
 
-  PointList Pys;
+  vector<Point> Pys;
   Pys.reserve(n);
   for (auto& p: Py) {
     if (adis2(p.x, mid.x) <= mindis) Pys.push_back(p);
@@ -42,8 +41,7 @@ Segment closest_pair_rec(PointList Px, PointList Py) {
   return res;
 }
 
-Segment closest_pair(PointList P)
-{
+Segment closest_pair(vector<Point> P) {
   vector<Point> Px(P), Py(P);
   sort(Px.begin(), Px.end(), compareX);
   for (int i = 0; i < Px.size() - 1; i++) {
