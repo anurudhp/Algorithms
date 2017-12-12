@@ -6,3 +6,9 @@ template <typename Arg1, typename... Args>
 void __f(const char* names, Arg1&& arg1, Args&&... args) {
   const char* comma = strchr(names + 1, ',');
   cerr.write(names, comma - names) << " = " << arg1<<" | ";__f(comma+1, args...); }
+
+// OST: find_by_order, order_of_key
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
