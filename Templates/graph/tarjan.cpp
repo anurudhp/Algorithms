@@ -1,44 +1,22 @@
-namespace Tarjan {
-  vector<int> pre, low;
-  vector<vector<int>> comps;
-  vector<bool> onstack;
-  stack<int> st;
-  vector<int> *adj;
-  int dfsno;
-
-  void push(int u) { st.push(u); onstack[u] = 1; }
-  int pop() { int v = st.top(); st.pop(); onstack[v] = 0; return v; }
-
-  void dfs(int u) {
-    pre[u] = low[u] = dfsno++;
-    push(u);
-
-    for (int v: adj[u]) {
-      if (pre[v] == -1) {
-        dfs(v);
-        low[u] = min(low[u], low[v]);
-      } else if (onstack[v]) {
-        low[u] = min(low[u], pre[v]);
-      }
-    }
-    if (low[u] == pre[u]) {
-      comps.emplace_back();
-      auto& curr = comps.back();
-      int v;
-      do curr.push_back(v = pop()); while (v != u);
-    }
+const int N = 1e5; // nodes
+int dfsno=0, pre[N], low[N], onstack[N];
+int cno, comp[N]; // forms toposort: largest cno=root
+vector<int> adj[N];
+stack<int> stk;
+void dfs(int u) {
+  if (pre[u] > 0) return;
+  pre[u] = low[u] = ++dfsno;
+  stk.push(u); onstack[u] = true;
+  for (int v: adj[u]) {
+    if (pre[v] == 0) dfs(v), low[u] = min(low[u], low[v]);
+    else if (onstack[v]) low[u] = min(low[u], pre[v]);
   }
-
-  vector<vector<int>> computeSCC(int n, vector<int>* iadj) {
-    pre = vector<int>(n, -1);
-    low = vector<int>(n, -1);
-    onstack = vector<bool>(n, false);
-    st = stack<int>();
-    comps.clear();
-
-    dfsno = 0;
-    adj = iadj;
-    for (int u = 0; u < n; u++) if (pre[u] == -1) dfs(u);
-    return comps;
+  if (pre[u] == low[u]) {
+    int v; do {
+      v = stk.top(); stk.pop();
+      onstack[v] = false; comp[v] = cno;
+    } while (v != u);
+    ++cno;
   }
-};
+}
+// for (int i=0;i<n;i++) dfs(i);
