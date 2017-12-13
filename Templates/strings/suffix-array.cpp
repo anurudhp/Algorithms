@@ -1,15 +1,7 @@
-// Suffix Array
-
 // Call computeSA, it will calculate suffix array in sa[], position of suffix i...n in sa[] in pos[]
 // and sparse table in tree[][].
 // Query lcp for suffix i...n and j...n using calcLCP(i, j)
-
-#include<bits/stdc++.h>
-#define fr(x) scanf("%d",&x)
-using namespace std;
-
 const int LEN = 100020, LOGLEN = 20;
-
 char s[LEN];
 int pos[LEN], sa[LEN], ra[2*LEN], temp[LEN], tree[LOGLEN][LEN], val[LEN], msb[LEN];
 
