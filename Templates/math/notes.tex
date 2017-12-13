@@ -1,0 +1,28 @@
+\subsubsection {Number Theory}
+\textbf{Chinese Remainder} Given $x \equiv a_i (\text{mod } m_i)$, with pairwise coprime $m_i$, then x has a unique solution modulo $M = \prod m_i$ ie. $x \equiv \sum a_i b_i \frac{M}{m_i}$ where $b_i$ is inverse of $\frac{M}{m_i} (\text{mod }m_i)$
+\\
+\\
+\textbf{Wilson's theorem} $p$ is prime $\iff (p-1)! \equiv -1 (\text{mod }p)$
+\\
+\\
+\textbf{Mobius Function}
+\[ \mu(n) = \begin{cases}
+      0 & \text{n has square factor} \\
+      1 & \text{n has even no. of prime factors} \\
+      -1 & \text{n has odd no. of prime factors} \\
+   \end{cases}
+\]
+\\
+\\
+
+\subsubsection {Counting and Recurrences}
+\textbf{Taylor Series} $f(x) = \sum\limits_{n = 0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n$
+\\
+\\
+\textbf{Expansion} $\frac{1}{(1-z)^n} = \sum\limits_{i=0}^{\infty} \binom{n+i-1}{i}z^i$
+\\
+\\
+textbf{Mobius Inversion} If for all $n \geq 1$;  $f(n) = \prod\limits_{d|n} g(d)$ then $g(n) = \prod\limits_{d|n} \mu(d)f(\frac{n}{d})$
+\\
+\\
+\textbf{Burnside Lemma} If $G$ is the set of symmetry operations, and fix$(g)$ is the set of elements that do not change on applying $g$ ($g \in G$); then total no. of distinct elements = $\frac{1}{|G|} \sum\limits_{g\in G} |\text{fix}(g)|$
