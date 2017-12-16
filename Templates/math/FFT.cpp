@@ -12,11 +12,9 @@ inline void fft(vector<base> &a, bool invert) {
 	while((1<<logn)<n) ++logn;
 	for(int i=1, j=0; i<n; ++i) {
 		int bit = (n>>1);
-		for(; j>=bit; bit>>=1)
-			j -= bit;
+		for(; j>=bit; bit>>=1) j -= bit;
 		j += bit;
-		if(i < j)
-			swap (a[i], a[j]);
+		if(i < j) swap (a[i], a[j]);
 	}
 	for(int len=2;len<=n;(len<<=1)) {
 		double ang = 2*PI/len;
@@ -45,9 +43,7 @@ inline void exp(int k) {
 			a.resize(a.size()<<1);
 			ans.resize(ans.size()<<1);
 			fft(a, 0); fft(ans, 0);
-			for(int i=0; i<ans.size(); ++i) {
-				ans[i]*=a[i];
-			}
+			for(int i=0; i<ans.size(); ++i) ans[i]*=a[i];
 			fft(ans, 1);
 			for(int i=0; i<ans.size(); ++i) {
 				if(real(ans[i])>0.5) ans[i]=1;
@@ -58,9 +54,7 @@ inline void exp(int k) {
 		}
 		else a.resize(a.size()<<1);
 		fft(a, 0);
-		for(int i=0;i<a.size();++i){
-			a[i] = a[i]*a[i];
-		}
+		for(int i=0;i<a.size();++i) a[i] = a[i]*a[i];
 		fft(a, 1);
 		for(int i=0;i<a.size();++i){
 			if(real(a[i])>0.5) a[i]=1;

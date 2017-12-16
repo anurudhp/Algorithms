@@ -43,34 +43,6 @@ int spfa(int start, int sink) {
 	}
 	return (dis[sink]*aug);
 }
-
-main() {
-	int n, m, s = n + 1, t = n + 2;
-	vector<int> balance(110);
-	addEdge(n, 1, INF2, 0);
-	int ans = 0;
-	for(int i=1; i<=m; ++i) {
-		// read a, b, c, f
-		balance[a] += f; balance[b] -= f;
-		if(f <= c) {
-			addEdge(a, b, c - f, 1);
-			addEdge(a, b, INF2, 2);
-			addEdge(b, a, f, 1);
-		} else {
-			ans += f - c;
-			addEdge(a, b, INF2, 2);
-			addEdge(b, a, f - c, 0);
-			addEdge(b, a, c, 1);
-		}
-	}
-	int sumB = 0;
-	for(int i=1; i<=n; ++i) {
-		if(balance[i] > 0) {
-			addEdge(i, t, balance[i], 0);
-			sumB += balance[i];
-		} else addEdge(s, i, -balance[i], 0);
-	}
-	// Max Flow Loop, Currently min cost is returned
-	while(1) { int temp = spfa(s, t);
-		if(temp == INF) break; ans += temp; }
-}
+while(true) /*** in main ***/
+	int temp = spfa(s, t); // min cost is returned
+	if(temp == INF) break; ans += temp;

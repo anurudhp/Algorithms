@@ -12,7 +12,6 @@ void add_str(string s) {
 	}
 	term[cur] = cur;
 }
-
 void push_links() {
 	int que[sz];
 	int st = 0, fi = 1;
@@ -27,22 +26,10 @@ void push_links() {
 			} else to[V][c] = to[U][c];
 	}
 }
-
-void go(string &s) {
-	int x = 0; s += "$";
-	for (auto &c: s) {
-		while (1) {
-			if (to[x].count(c)) { x = to[x][c]; break; }
-			if (!x) break;
-			x = link[x];
-		}
-		cnt[x]++;
-	}
-}
+// add `go` function
 
 /*** Implementation 2 ***/
 const int MAXN = 1e6 + 42;
-
 map<char, int> to[MAXN];
 int cnt[MAXN], link[MAXN], que[MAXN], sz = 1;
 
@@ -53,7 +40,6 @@ void add_str(string s, int k) {
 		v = to[v][c];
 	}
 }
-
 void push_links() {
 	link[0] = -1;
 	int st = 0, fi = 1;
@@ -70,10 +56,9 @@ void push_links() {
 		}
 	}
 }
-
 void go(string &s) {
 	int x = 0; s += "$";
-	for(auto &c: s) {
+	for (auto &c: s) {
 		while(1) {
 			if(to[x].count(c)) { x=to[x][c]; break; }
 			if(!x) break;
