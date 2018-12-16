@@ -14,3 +14,18 @@ using namespace __gnu_pbds;
 typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
 
 // compiler options: -Wall -std=c++11 -g [-O2-Wno-reorder]
+#pragma GCC optimize("Ofast")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
+#pragma GCC optimize("unroll-loops")
+
+// arora
+#define LL					long long
+#define db 					long double
+#define ii 					pair <int, int>
+#define fi 					first
+#define se 					second
+#define sz(a) 				(int) a.size()
+#define all(a) 				a.begin(), a.end()
+#define rep(i, a, b) 		for (int i = a; i < b; ++i)
+#define repv(i, a, b) 		for (int i = b - 1; i >= a; --i)
+#define SET(A, val) 		memset(A, val, sizeof(A))
