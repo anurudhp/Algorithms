@@ -1,69 +1,49 @@
-/*** Implementation 1 ***/
-const int MAXN = 404, MOD = 1e9 + 7, sigma = 26;
-int cnt[MAXN], term[MAXN], len[MAXN], to[MAXN][sigma], link[MAXN], sz = 1;
-void add_str(string s) {
-	int cur = 0;
-	for(auto c: s) {
-		if(!to[cur][c - 'a']) {
-			to[cur][c - 'a'] = sz++;
-			len[to[cur][c - 'a']] = len[cur] + 1;
-		}
-		cur = to[cur][c - 'a'];
-	}
-	term[cur] = cur;
-}
-void push_links() {
-	int que[sz];
-	int st = 0, fi = 1;
-	que[0] = 0;
-	while(st < fi) {
-		int V = que[st++]; int U = link[V];
-		if(!term[V]) term[V] = term[U];
-		for(int c = 0; c < sigma; c++)
-			if(to[V][c]) {
-				link[to[V][c]] = V ? to[U][c] : 0;
-				que[fi++] = to[V][c];
-			} else to[V][c] = to[U][c];
-	}
-}
-// add `go` function
-
-/*** Implementation 2 ***/
-const int MAXN = 1e6 + 42;
-map<char, int> to[MAXN];
-int cnt[MAXN], link[MAXN], que[MAXN], sz = 1;
-
-void add_str(string s, int k) {
-	int v = 0;
-	for(auto c: s) {
-		if(!to[v][c]) to[v][c] = sz++;
-		v = to[v][c];
-	}
-}
-void push_links() {
-	link[0] = -1;
-	int st = 0, fi = 1;
-	que[0] = 0;
-	while(st < fi) {
-		int v = que[st++];
-		for(auto it: to[v]) {
-			int u = it.second;
-			int c = it.first;
-			int j = link[v];
-			while(j != -1 && !to[j][c]) j = link[j];
-			if(j != -1) link[u] = to[j][c];
-			que[fi++] = u;
-		}
-	}
-}
-void go(string &s) {
-	int x = 0; s += "$";
-	for (auto &c: s) {
-		while(1) {
-			if(to[x].count(c)) { x=to[x][c]; break; }
-			if(!x) break;
-			x = link[x];
-		}
-		cnt[x]++;
-	}
-}
+struct ahocorasick {//SZ:no of nodes
+  vector <int> sufflink,out; 
+  vector< map<char, int> > trie;//call findnextstate
+  ahocorasick() { 
+    out.resize(1); trie.resize(1);
+  }
+  inline void insert(string &s) { 
+    int curr = 0;//clear to reinit
+    rep(i,0,sz(s)) {
+      if(!trie[curr].count(s[i])) {
+        trie[curr][s[i]] = sz(trie); 
+        trie.push_back(map<char,int>());
+        out.push_back(0);
+      } curr = trie[curr][s[i]];
+    } ++out[curr];
+  } 
+  inline void build_automation() { 
+    sufflink.resize(sz(trie));
+    queue <int> q;
+    for(auto x: trie[0]) { 
+      sufflink[x.se]=0;
+      q.push(x.se);
+    } 
+    while(!q.empty()) { 
+      int curr = q.front(); q.pop();
+      for(auto x:trie[curr]) {
+        q.push(x.se); int tmp=sufflink[curr];
+        while(!trie[tmp].count(x.fi) && tmp) tmp = sufflink[tmp];
+        if(trie[tmp].count(x.fi)) sufflink[x.se]=trie[tmp][x.fi];
+        else sufflink[x.se]=0;
+        out[x.se]+=out[sufflink[x.se]];
+      }
+    }
+  }
+  int findNextState(int curr,char ch) {
+    while(curr && !trie[curr].count(ch)) curr=sufflink[curr];
+    return (!trie[curr].count(ch)) ? 0 :trie[curr][ch];
+  } 
+  int query(string &s){
+    int ans=0; int curr = 0;
+    rep(i,0,sz(s)) {
+      curr=findNextState(curr,s[i]);
+      ans+=out[curr];
+    } return ans;
+  } 
+  void clear() {
+    trie.clear(); sufflink.clear(); out.clear();
+    out.resize(1); trie.resize(1); 
+}};
