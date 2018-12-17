@@ -1,14 +1,3 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
-
-\title{ICPC Theory}
-\author{rishabharora1997 }
-\date{December 2018}
-
-\begin{document}
-
-\maketitle
-
 \let\le=\leqslant
 \let\ge=\geqslant
  
@@ -25,61 +14,8 @@
 }
  
  
-% }}}
-\begin{document}
-\Section{DP Optimizations}
-\begin{description}
- \item[1D-1D Optimizaton : ] \hfill
- \[
-   dp[i] =  \min\limits_{k < i}( dp[k] + cost[k][i] )
- \]
- If cost satifies quadrangle inequality, $Best[i]<=Best[i+1]$. Hence, for each i see for what all j$>$i, i could be the $Best[j]$ using binary search.
- Store the beginning of each segment in a vector. Whenever we consider a new value of i, perform the following to update the segments:
- \begin{itemize}
-   \item While the new value of i is better than the value at the back of the vector, pop the back.
-   \item Binary search in the current segment to find the turning point, and push this value of i together with the turning point onto the back of the vector.
-   \end{itemize}
- \item[Knuth's Optimization] \hfill
- \[
-       dp[i][j] =  \min\limits_{i < k < j}(dp[i][k-1] + dp[k+1][j]) + cost[i][j]
- \]
- If cost satisfies quadrangle inequality and it is monotonic, then $Best[i][j-1]<=Best[i][j]<=Best[i][j+1]$. So, build the dp over length (j=i+len) and for dp[i][j] traverse only from Best[i][j-1] to Best[i][j+1]. Reduces $O(N^{3})$ to $O(N^{2})$
- 
-\end{description}
- 
+% }}} 
 \Section{Games}
- 
-\Topic{Grundy numbers}.
-For a two-player, normal-play (last to move wins) game on a graph $(V,E)$:
-$G(x) = \mbox{mex}(\{ G(y) : (x, y) \in E \})$,
-where $\mbox{mex}(S) = \min \{ n \ge 0: n \not\in S \}$.
-$x$ is losing iff $G(x) = 0$.
- 
-\Topic{Sums of games}.
- 
-\vspace{-4mm}
-\begin{itemize}
- \item
-   \emph{Player chooses a game and makes a move in it}.
-   Grundy number of a position is xor of grundy numbers of positions in summed games.
- \item
-   \emph{Player chooses a non-empty subset of games (possibly, all) and makes moves in all of them}.
-   A position is losing iff each game is in a losing position.
- \item
-   \emph{Player chooses a proper subset of games (not empty and not all),
-       and makes moves in all chosen ones.}
-   A position is losing iff grundy numbers of all games are equal.
- \item
-   \emph{Player must move in all games, and loses if can't move in some game}.
-   A position is losing if any of the games is in a losing position.
-\end{itemize}
-\vspace{-3mm}
-\Topic{Mis\`{e}re Nim}.
-
-A position with pile sizes $a_1, a_2, \dots, a_n \ge 1$,
-not all equal to $1$, is losing iff $a_1 \oplus a_2 \oplus \dots \oplus a_n = 0$
-(like in normal nim.)
-A position with $n$ piles of size $1$ is losing iff $n$ is \emph{odd}.\newline
 \Topic{Green HackenBush Game} If two players are playing a game where move allowed is to cut an edge of a (rooted) tree then for each node,set value of the node to xor of (1 + value of it's child) for all children of the node in the tree. For leaves, value is 0. See value of root to determine the winner. For a (rooted) graph, where each player can remove an edge from the component connected to the root and one unable to remove loses. Create bridge-tree and do same as tree except val[node] = orignalVal[node] $\oplus$ (numEdges[node] \& 1) \\
 \Topic{StairCase Nim} Stair Case from \{1...N\}. Ans = xor of $a_{even}$ \\
 % }}}
@@ -192,4 +128,3 @@ when $G-e$ is the multigraph obtained by deleting $e$, and $G/e$ is
 the contraction of $G$ by $e$ (multiple edges arising from the contraction
 are preserved.)
 
-\end{document}
