@@ -1,61 +1,33 @@
-void dfs(int cur, int parent){
-  disc[cur] = low[cur] = ++t;
-  visited[cur] = true;
-  for(auto it:v[cur]){
-    if(visited[it] == 0){
-      dfs(it, cur);
-      low[cur] = min(low[cur], low[it]);
-      if(MAP[{cur, it}] > 1 or MAP[{it, cur}] > 1)arr.push_back({cur, it})
-      else if(low[it] > disc[cur]);//these are bridge edges
-      else arr.push_back({cur, it});
-    }
-    else if(it != parent){
-      low[cur] = min(low[cur], disc[it]);
-      arr.push_back({cur, it});
+vector <int> g[N], Tree[N]; // g is an edge-list 
+int U[M], V[M], W[M], dsu[N], t, arr[N];
+bool vis[N], is_bridge[M]; 
+int f(int x) { return dsu[x] = (x == dsu[x]) ? x: f(dsu[x]); }
+int adj(int v, int e) { return U[e] ^ V[e] ^ v; }
+bool merge(int a, int b) { 
+  a = f(a), b = f(b);
+  if(a == b) return false;
+  dsu[a] = b;
+  return true; 
+}
+int dfs0(int v, int edge){
+  vis[v] = true, arr[v] = t++;
+  int dbe = arr[v]; //useforbridges
+  for(int e: g[v]) {
+    int to = adj(v, e);
+    if(!vis[to]) dbe = min(dbe, dfs0(to, e));
+    else if(e != edge) dbe = min(dbe, arr[to]);
+  }
+  if((dbe == arr[v]) && (edge != -1)) is_bridge[edge] = true;
+  else if(edge != -1) merge(U[edge], V[edge]);
+  return dbe; 
+}
+void build_tree(int n, int m){
+  rep(i, 1, n + 1) dsu[i] = i;
+  rep(i, 1, n + 1) if(!vis[i]) dfs0(i, -1);
+  rep(i, 1, m + 1) {
+    if(f(U[i]) != f(V[i])) {
+      Tree[f(U[i])].push_back(f(V[i])); 
+      Tree[f(V[i])].push_back(f(U[i]));
     }
   }
-}
-int find(int x){ return dsu[x] = (x == dsu[x]) ? x : find(dsu[x]); }
-void join(int x, int y){ dsu[find(y)] = find(x);}
-// returns a node in tree, tree is graph 
-int bridge_tree(){
-  int root = -1;
-  for(int i=1; i<=N; ++i){ 
-    dsu[i] = i;
-    if(visited[i]) continue; else dfs(i, 0);
-  }
-  for(auto it:arr) join(it.first, it.second);
-  for(int i=1; i<=N; ++i){
-    for(auto it:v[i]){
-      if(find(i) != find(it)) tree[find(i)].push_back(find(it));
-    } if(find(i) == i) root = i;
-  } return root;
-}
-void dfsLCA(int cur, int parent){
-  start[cur] = ++t; dp[cur][0] = parent;
-  lev[cur] = lev[parent] + 1;
-  for(auto it:tree[cur]){
-    if(it != parent) dfsLCA(it, cur);
-  } finish[cur] = ++t;
-}
-bool isAncestor(int u,int a){
-    if(u==a) return true;
-    if(start[u]<start[a] && finish[u]>finish[a]) return true;
-    return false;
-}
-pair<int, int> getCommonPath(int u,int a,int v,int b){
-    if(!isAncestor(v,a)) return make_pair(0,0);
-    int x=LCA(a,b);
-    if(lev[v]<lev[u]){if(isAncestor(u,x)) return make_pair(u,x);}
-    else{ if(isAncestor(v,x)) return make_pair(v,x);}
-    return make_pair(0,0);
-}//length of path along a,b - length of common path of (a,b) and (c,d) 
-int get_answer(int a, int b, int c, int d){
-    int u=LCA(a,b),v=LCA(c,d); int ret=getdist(a,b,u);
-    pair<int, int> X;
-    X=getCommonPath(u,a,v,c); ret -= getdist(X.F,X.S,LCA(X.F,X.S));
-    X=getCommonPath(u,a,v,d); ret -= getdist(X.F,X.S,LCA(X.F,X.S));
-    X=getCommonPath(u,b,v,c); ret -= getdist(X.F,X.S,LCA(X.F,X.S));
-    X=getCommonPath(u,b,v,d); ret -= getdist(X.F,X.S,LCA(X.F,X.S));
-    return ret;
 }

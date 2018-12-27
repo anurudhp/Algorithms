@@ -1,5 +1,5 @@
-for minimum : hull.addLine(a, b), hull.getBest(a)
-for maximum : hull.addLine(-a, -b), -hull.getBest(a)
+// for minimum : hull.addLine(a, b), hull.getBest(a)
+// for maximum : hull.addLine(-a, -b), -hull.getBest(a)
 
 struct cht{
   struct Line{
