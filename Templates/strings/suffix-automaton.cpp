@@ -3,15 +3,12 @@
 // Or, we can keep reverse edges of suffix links(all prefixes for that substring), and number of ways to reach a root, would be the answer(can be used to print all answers)
 struct SuffixAutomaton {
   vector<map<char,int>> edges;
-  vector<int> link, length;
-  // length[i]: longest string in i-th class
+  vector<int> link, length; //length[i]: longest string in i-th class
   int last; // index of equivalence class of whole string
-
   SuffixAutomaton(string s) {
     edges.push_back(map<char,int>());
     link.push_back(-1); length.push_back(0);
     last = 0;
-
     for(int i=0;i<s.size();i++) {
       edges.push_back(map<char,int>());
       length.push_back(i+1);
