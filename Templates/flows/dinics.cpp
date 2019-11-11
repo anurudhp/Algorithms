@@ -1,52 +1,81 @@
-class Dinics {
-public: typedef int FT; // can use float/double
-	static const FT INF = 1e9; // maximum capacity
-	static const FT EPS = 0; // minimum capacity/flow change
-	int nodes, src, dest;
-	vector<int> dist, q, work;
-	struct Edge { int to, rev; FT f, cap; };
-	vector< vector<Edge> > g;
+struct FlowEdge {
+    int v, u;
+    long long cap, flow = 0;
+    FlowEdge(int v, int u, long long cap) : v(v), u(u), cap(cap) {}
+};
 
-	bool dinic_bfs() {
-	  fill(dist.begin(), dist.end(), -1);
-	  dist[src] = 0;
-	  int qt = 0;
-	  q[qt++] = src;
-	  for (int qh = 0; qh < qt; qh++) {
-	    int u = q[qh];
-	    for (int j = 0; j < (int) g[u].size(); j++) {
-	      Edge &e = g[u][j]; int v = e.to;
-	      if (dist[v] < 0 && e.f < e.cap)
-	        dist[v] = dist[u] + 1; q[qt++] = v;
-	    }
-	  }  return dist[dest] >= 0;
-	}
-	int dinic_dfs(int u, int f) {
-	  if (u == dest) return f;
-	  for (int &i = work[u]; i < (int) g[u].size(); i++) {
-	    Edge &e = g[u][i];
-	    if (e.cap <= e.f) continue;
-	    int v = e.to;
-	    if (dist[v] == dist[u] + 1) {
-	      FT df = dinic_dfs(v, min(f, e.cap - e.f));
-	      if (df > 0) { e.f += df, g[v][e.rev].f -= df;
-	        return df; }
-	    }
-	  } return 0;
-	}
+struct Dinic {
+    const long long flow_inf = 1e18;
+    vector<FlowEdge> edges;
+    vector<vector<int>> adj;
+    int n, m = 0;
+    int s, t;
+    vector<int> level, ptr;
+    queue<int> q;
 
-	Dinics(int n): dist(n, 0), q(n, 0), work(n, 0), g(n), nodes(n) {}
-	// *** s->t (cap); t->s (rcap)
-	void addEdge(int s, int t, FT cap, FT rcap = 0) {
-	  g[s].push_back({t, (int) g[t].size(), 0, cap});
-	  g[t].push_back({s, (int) g[s].size() - 1, 0, rcap});
-	} // ***
-	FT maxFlow(int _src, int _dest) {
-	  src = _src, dest = _dest;
-	  FT result = 0, delta;
-	  while (dinic_bfs()) {
-	    fill(work.begin(), work.end(), 0);
-	    while ((delta = dinic_dfs(src, INF)) > EPS) result += delta;
-	  } return result;
-	}
+    Dinic(int n, int s, int t) : n(n), s(s), t(t) {
+        adj.resize(n);
+        level.resize(n);
+        ptr.resize(n);
+    }
+
+    void add_edge(int v, int u, long long cap) {
+        edges.emplace_back(v, u, cap);
+        edges.emplace_back(u, v, 0);
+        adj[v].push_back(m);
+        adj[u].push_back(m + 1);
+        m += 2;
+    }
+
+    bool bfs() {
+        while (!q.empty()) {
+            int v = q.front();
+            q.pop();
+            for (int id : adj[v]) {
+                if (edges[id].cap - edges[id].flow < 1)
+                    continue;
+                if (level[edges[id].u] != -1)
+                    continue;
+                level[edges[id].u] = level[v] + 1;
+                q.push(edges[id].u);
+            }
+        }
+        return level[t] != -1;
+    }
+
+    long long dfs(int v, long long pushed) {
+        if (pushed == 0)
+            return 0;
+        if (v == t)
+            return pushed;
+        for (int& cid = ptr[v]; cid < (int)adj[v].size(); cid++) {
+            int id = adj[v][cid];
+            int u = edges[id].u;
+            if (level[v] + 1 != level[u] || edges[id].cap - edges[id].flow < 1)
+                continue;
+            long long tr = dfs(u, min(pushed, edges[id].cap - edges[id].flow));
+            if (tr == 0)
+                continue;
+            edges[id].flow += tr;
+            edges[id ^ 1].flow -= tr;
+            return tr;
+        }
+        return 0;
+    }
+
+    long long flow() {
+        long long f = 0;
+        while (true) {
+            fill(level.begin(), level.end(), -1);
+            level[s] = 0;
+            q.push(s);
+            if (!bfs())
+                break;
+            fill(ptr.begin(), ptr.end(), 0);
+            while (long long pushed = dfs(s, flow_inf)) {
+                f += pushed;
+            }
+        }
+        return f;
+    }
 };
