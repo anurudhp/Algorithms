@@ -1,7 +1,10 @@
-const int mod = 7340033, root = 5, root_1 = 4404020, root_pw = 1 << 20;
+const int mod = 7340033; // any prime s.t. root_pw divides (mod-1) 
+const int root_pw = 1 << 20; // maximum array size, HAS TO BE A POWER OF 2
+const int root = 5; // any number with order `root_pw`
+const int root_1 = 4404020; // inverse of root
 
-void ntt(vector<int> & a, bool invert) {
-    int n = a.size();
+void ntt(vector<int> & a, bool invert = false) {
+    int n = a.size(); // HAS TO BE A POWER OF 2
 
     for (int i = 1, j = 0; i < n; i++) {
         int bit = n >> 1;
