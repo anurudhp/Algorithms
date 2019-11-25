@@ -31,3 +31,9 @@ LL fact_exp(LL n, LL p){
   LL ex=0;do{n/=p;ex+=n;
   }while(n>0);return ex;
 }
+//returns nCk % p in O(p).n and k can be large.
+LL choose_mod(LL n, LL k, LL p){
+  if(k<0||n<k)return 0;if(k==0||k==n)return 1;
+  if(fact_exp(n,p)>fact_exp(k,p)+fact_exp(n-k,p))return 0;
+  return choose_mod_one(n,k,p);
+}
