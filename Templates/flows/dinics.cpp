@@ -1,6 +1,6 @@
 struct Dinic {
     typedef int FT;
-    static const FT INF = 1e9, EPS = 0;
+    static const FT INF = 1e9, EPS = 1;
     struct FlowEdge {
         int v, u;
         FT cap, flow = 0;
@@ -48,10 +48,10 @@ struct Dinic {
         for (int& cid = ptr[v]; cid < (int)adj[v].size(); cid++) {
             int id = adj[v][cid];
             int u = edges[id].u;
-            if (level[v] + 1 != level[u] || edges[id].cap - edges[id].flow < 1)
+            if (level[v] + 1 != level[u] || edges[id].cap - edges[id].flow < EPS)
                 continue;
             FT tr = dfs(u, min(pushed, edges[id].cap - edges[id].flow));
-            if (tr == 0)
+            if (tr < EPS)
                 continue;
             edges[id].flow += tr;
             edges[id ^ 1].flow -= tr;
@@ -61,7 +61,7 @@ struct Dinic {
         return 0;
     }
 
-    FT flow(int s, int t) {
+    FT max_flow(int s, int t) {
         src = s, dest = t;
         FT f = 0;
         while (true) {
