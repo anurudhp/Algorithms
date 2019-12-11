@@ -1,4 +1,4 @@
-#define trace(...) {cerr << ">> ", __f(#__VA_ARGS__, __VA_ARGS__);}
+#define trace(...) {__f(#__VA_ARGS__, __VA_ARGS__);}
 template <typename Arg1>
 void __f(const char* name, Arg1&& arg1) {
   cerr << name << " = " << arg1 << std::endl; }

@@ -6,3 +6,4 @@
 *.ut.cpp
 test.cpp
 *.pdf
+node_modules

@@ -1,8 +1,8 @@
 all:
-	notebook-generator -s 12 -p a4paper Templates
+	notebook-generator -s 12 -p a4paper -c 3 Templates
 
 clean:
 	@rm notebook.pdf
 
 install:
-	npm install -g notebook-generator
+	npm install notebook-generator
