@@ -1,0 +1,97 @@
+\documentclass[${fontSize},${paper},landscape,twosided]{extarticle}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{graphicx}
+
+\geometry{verbose,landscape,${paper},tmargin=2cm,bmargin=2cm,lmargin=1cm,rmargin=1cm}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+%% Golang definition for listings
+%% http://github.io/julienc91/lstlistings-golang
+%%
+\lstdefinelanguage{Golang}%
+  {morekeywords=[1]{package,import,func,type,struct,return,defer,panic,%
+     recover,select,var,const,iota,},%
+   morekeywords=[2]{string,uint,uint8,uint16,uint32,uint64,int,int8,int16,%
+     int32,int64,bool,float32,float64,complex64,complex128,byte,rune,uintptr,%
+     error,interface},%
+   morekeywords=[3]{map,slice,make,new,nil,len,cap,copy,close,true,false,%
+     delete,append,real,imag,complex,chan,},%
+   morekeywords=[4]{for,break,continue,range,go,goto,switch,case,fallthrough,if,%
+     else,default,},%
+   morekeywords=[5]{Println,Printf,Error,Print,},%
+   sensitive=true,%
+   morecomment=[l]{//},%
+   morecomment=[s]{/*}{*/},%
+   morestring=[b]',%
+   morestring=[b]",%
+   morestring=[s]{`}{`},%
+   }
+
+
+\lstset{frame=tb,
+  language=C++,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=2
+}
+
+\setlength{\columnsep}{0.5in}
+\setlength{\columnseprule}{1px}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{${initials}}
+
+%%%%% <CUSTOM> %%%%%%%%%%%
+% reduce title-spacing
+\usepackage{titlesec}
+\titlespacing\section
+{0pt}{-5pt plus 0pt minus 0pt}{-5pt plus 0pt minus 0pt}
+\titlespacing\subsection
+{0pt}{-5pt plus 0pt minus 0pt}{-5pt plus 0pt minus 0pt}
+\titlespacing\subsubsection
+{0pt}{-5pt plus 0pt minus 0pt}{-5pt plus 0pt minus 0pt}
+%%%%% </CUSTOM> %%%%%%%%%%
+
+\begin{document}
+
+\title{tesla\_protocol}
+\author{IIIT Hyderabad}
+\date{}
+\maketitle
+\begin{multicols}{3}
+${image}
+\tableofcontents
+\end{multicols}
+\begin{multicols}{2}
+\lstloadlanguages{C++,Java}
+
