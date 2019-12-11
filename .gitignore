@@ -5,3 +5,4 @@
 *.S
 *.ut.cpp
 test.cpp
+*.pdf
