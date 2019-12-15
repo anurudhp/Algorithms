@@ -1,6 +1,6 @@
 //query = {l, r, id, t} sort by {l/block, r/block, t}
 //update = {pos, pre, now} - point update at position
-// complexity = O(n^5/3)
+// complexity = O(n^5/3) : set block = n^2/3
 for(int i = 0; i < (int)q.size(); i++) {
 	while(t < q[i].t) ++t, apply(u[t].pos, u[t].now);
 	while(t > q[i].t) apply(u[t].pos, u[t].pre), --t;
