@@ -1,24 +1,37 @@
-int nch = 1, narr, sub[N], pos[N], chain[N], CH[N], CP[N]; 
-// nch: number of chains, narr: position var for pos[]. 
-// pos: position in basearray, CH: first node of curr chain
-// CP: jump node after chain finished. 
-void HLD(int v, int p) {
-	pos[v] = ++narr, chain[v] = nch;
-	int big = 0; 
-  	for(int u: g[v]) { 
-		if (u == p) continue; 
-		else if(!big) big = u;
-		else if(sub[u] > sub[big]) big = u;
-	} if(big) HLD(big, v);
-  	for(int u: g[v]) {
- 		if (u == p || u == big) continue; 
-		++nch, CH[nch] = u, CP[nch] = v;
-    	HLD(u, v); }} // query(lo, hi, pos, l, r); 
-int query_up(int r, int q) {
-	int ans = 0, t;
-	while(chain[q] != chain[r]) {
-  		t = chain[q]; 
-  		ans += query(1, n, 1, pos[CH[t]], pos[q]);
-		q = CP[t];
-	} ans += query(1, n, 1, pos[r], pos[q]);
-	return ans;}
+vector<pair<int, int>> g[N];
+const int null_val = INT_MIN; //null value eg. -inf for max
+int head[N], pos[N], sz[N], par[N];
+//initialize sz as subtree size and par as parent node using dfs, call hld(root, -1, 1, null_val);
+void hld(int u, int par, int headno, int edgeval) {//remove edgeval if values are on nodes
+	head[u] = headno;
+	pos[u] = idx++;
+	//update segtree at pos[u] to edgeval/node value
+	int best = -1, bestedge;
+	for(auto&v: g[u]) {
+		if(v.first == par) continue;
+		if(best == -1 || sz[v.first] > sz[best]) {
+			best = v.first;
+			bestedge = v.second;
+		}
+	}
+	if(best != -1) {
+		hld(best, u, headno, bestedge);
+	}
+	for(auto&v: g[u]) {
+		if(v.first == par) continue;
+		if(v.first == best) continue;
+		hld(v.first, u, v.first, v.second);
+	}
+}
+
+int queryhld(int a, int b) {
+	int ans = null_val;
+	while(head[a] != head[b]) {
+		if(h[head[a]] > h[head[b]]) swap(a, b);
+		//update ans with query(pos[head[b]], pos[b])
+		b = par[head[b]];
+	}
+	if(h[a] > h[b]) swap(a, b);
+	//update ans with query(pos[a]+1, pos[b]), in case of node values, use pos[a], pos[b]
+	return ans;
+}
