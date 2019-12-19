@@ -1,35 +1,29 @@
-// C[a][c]+C[b][d]<=C[a][d]+C[b][c] with a<=b<=c<=d, When A[i]<=A[i+1]
-// A[i] is best position to calculate DP for i
-// Use: set DP[1], arr.pb({N+1,1}), change <= to >= for Max       
-for each i:
-  insert(i);
-  int pos=lower_bound(arr.begin(),arr.end(),make_pair(i,0)) - arr.begin();
-  pos = arr[pos].second; dp[i] = cost(pos, i);
-void insert(int idx){
-  while(true){
-    if(arr.size() > 1){
-      auto X = arr[arr.size() - 1], Y = arr[arr.size() - 2];
-      int L = Y.second, H = N + 1, LL = idx, HH = N + 1;
-      while(L < H){
-        int mid = (L + H) >> 1;
-        if(cost(Y.second, mid) <= cost(X.second, mid)) L = mid + 1;
-        else H = mid;
-      }
-      while(LL < HH){
-        int mid = (LL + HH) >> 1;
-        if(cost(X.second, mid) <= cost(idx, mid)) LL = mid + 1;
-        else HH = mid;
-      }
-      if(L > LL){
-        arr.pop_back(); continue;
-      } else break;
-    } else break;
-  } auto X = arr[arr.size() - 1]; int L = idx, H = N + 1;
-  while(L < H){
-    int mid = (L + H) >> 1;
-    if(cost(X.second, mid) <= cost(idx, mid)) L = mid + 1;
-    else H = mid;
+#define until first
+#define opt second
+// Applicable if dp[i] = min_{j>i}(dp[j] + cost(i,j}) s.t. opt[i] <= opt[j] when i <= j (which holds if
+// cost(a, d) - cost(a, c) >= cost(b, d) - cost(b, c) for a <= b <= c <= d (more costly to expand bigger segments)
+ll cost(int i, int j) { return dp[j] + /*cost to jump from i to j*/; }
+void solve() {
+  dp[n] = 0;
+  vector<pair<int,int>> v;
+  v.emplace_back(n - 1, n);
+  int ipos = 0;
+  for (int i = n - 1; i >= 1; i--) {
+    while (ipos + 1 < v.size() && i <= v[ipos + 1].until) {
+      ipos++;
+    }
+    dp[i] = cost(i, v[ipos].opt);
+    while (v.back().until < i && cost(v.back().until, i) <= cost(v.back().until, v.back().opt)) {
+      v.pop_back();
+    }
+    int l = 1, r = min(i - 1, v.back().until);
+    while (l <= r) {
+      int mid = (l + r)/2;
+      if (cost(mid, i) <= cost(mid, v.back().opt)) l = mid + 1;
+      else r = mid - 1;
+    }
+    if (l - 1 >= 1) {
+      v.emplace_back(l - 1, i);
+    }
   }
-  if(L > N) return;
-  else{ arr[arr.size() - 1].first = L - 1; arr.push_back({N + 1, idx});}
 }
