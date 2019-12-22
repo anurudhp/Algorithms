@@ -1,4 +1,4 @@
-// Add a function f to the set which crosses every other functions at most once.
+// Add a function f to the set which crosses every other function at most once.
 int eval(int f, int x); // evaluate f(x)
 void update(int f, int root = 1, int s = 1, int e = n) {
   int mid = (s + e)/2;
