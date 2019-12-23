@@ -1,4 +1,4 @@
-using CD = complex<DBL>; // SLOW
+// using CD = complex<DBL>; // SLOW
 const DBL PI = acos(-1);
 void fft(vector<CD> & a, bool invert) {
   const int n = a.size(); // HAS TO BE POWER OF 2
@@ -15,9 +15,8 @@ void fft(vector<CD> & a, bool invert) {
       for (int j = 0; j < len / 2; j++) {
         CD u = a[i+j], v = a[i+j+len/2] * w;
         a[i+j] = u + v; a[i+j+len/2] = u - v;
-        w *= wlen;
+        w = w * wlen;
       }
     }
-  }
-  if (invert) { for (CD& x: a) x /= n; }
+  } if (invert) { for (CD& x: a) x = x / n; }
 }
