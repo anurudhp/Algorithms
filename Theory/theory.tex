@@ -1,0 +1,130 @@
+\let\le=\leqslant
+\let\ge=\geqslant
+ 
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3mm}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+ 
+\newcommand{\Section}[1]{
+ \section*{#1}
+ \addcontentsline{toc}{subsection}{#1}
+ \vspace{-3mm}
+}
+ 
+ 
+% }}} 
+\Section{Games}
+\Topic{Green HackenBush Game} If two players are playing a game where move allowed is to cut an edge of a (rooted) tree then for each node,set value of the node to xor of (1 + value of it's child) for all children of the node in the tree. For leaves, value is 0. See value of root to determine the winner. For a (rooted) graph, where each player can remove an edge from the component connected to the root and one unable to remove loses. Create bridge-tree and do same as tree except val[node] = orignalVal[node] $\oplus$ (numEdges[node] \& 1) \\
+\Topic{StairCase Nim} Stair Case from \{1...N\}. Ans = xor of $a_{even}$ \\
+% }}}
+\Topic{k-Nim}. One Player can reduce the size of \{1...k\} piles. Starting position is loosing iff for all $j \epsilon \{0...LOGMAX\} \sum_{i=1}^{N} a_{i}\&2^{j} = 0$ mod (k+1).
+\vspace{-3mm}
+\\
+
+%\Topic{3D rotation} by ccw angle $\phi$ around axis $\mathbf{n}$:
+%$\mathbf{r}' =
+%   \mathbf{r} \cos\phi +
+%   \mathbf{n} (\mathbf{n} \cdot \mathbf{r}) (1 - \cos\phi) +
+%   (\mathbf{n} \times \mathbf{r}) \sin\phi$
+% http://mathworld.wolfram.com/RotationFormula.html
+% note: order of n and r in the last term is changed,
+% as we're rotating vector r, and not the coordinate system here
+ 
+%\Topic{Plane equation from 3 points}.
+%$N \cdot (x, y, z) = N \cdot A$,
+%where $N$ is normal: $N = (B - A) \times (C - A)$.
+ 
+ 
+% Combinatorics {{{
+\vspace{-7mm}
+\Section{Maths}
+\vspace{-3mm}
+
+\Topic{Catalan Numbers}
+$C_{n} = \frac{1}{n+1}{{2n}\choose{n}}$. DP Recurrence : $C_{n+1} = \sum_{i=0}^{n}C_{i}C_{n-i}$ and $C_{0}=1$ .No. of balanced paranthesis. No. of paths to go from one end of matrix to another but only below main diagonal. Number of full binary trees with N+1 leaves. Number of non-isomorphic ordered trees with n vertices. Number of triangulations of polygon with N+2 sides. Number of ways to tile a stairstep shape of height n with n rectangles. The number of rooted binary trees with n internal nodes.  Number of standard Young tableaux whose diagram is a 2-by-n rectangle. i.e. the number of ways the numbers 1, 2, ..., 2n can be arranged in a 2-by-n rectangle so that each row and each column is increasing.
+ 
+\Topic{Pascal Triangle Properties:}\\
+${\sum_{i=1}^{n} {\binom {i}{j}} = {\binom {n+1}{j+1}}}
+,  {\sum_{i=0}^{n/2} {\binom {n-i}{i}} = F_{n+1}}\\
+{\sum_{j=0}^{k} {\binom {m}{j}}*{\binom {n-m}{k-j}} = {\binom {n}{k}}}
+, {\sum_{m=0}^{n} {\binom {m}{j}}*{\binom {n-m}{k-j}} = {\binom {n+1}{k+1}}}\\
+{\sum_{k=-a}^{a} {(-1)}^k {\binom {2a}{k+a}} = \frac{(3a)!}{(a!)^3}},  
+{\sum_{k=-a}^{a} {(-1)}^k {\binom {a+b}{a+k}}{\binom {b+c}{b+k}}{\binom {c+a}{c+k}} = \frac{(a+b+c)!}{(a!)(b!)(c!)}}$
+
+\Topic{Stirling numbers of $1^{st}$ kind}.
+$s_{n,k}$ is $(-1)^{n-k}$ times the number of permutations of $n$ elements with
+exactly $k$ permutation cycles.
+$|s_{n,k}| = |s_{n-1,k-1}| + (n-1) |s_{n-1,k}|$.
+ 
+\Topic{Stirling numbers of $2^{nd}$ kind}.
+$S_{n,k}$ is the number of ways to partition a set of $n$ elements into
+exactly $k$ non-empty subsets.
+$S_{n,k} = S_{n-1,k-1} + k S_{n-1,k}$.  
+$S_{n,1} = S_{n,n} = S_{0,0} = 1$.
+$S_{n,0} = S_{0,n} = 0$.\\
+$n^{k} = \sum_{i=0}^n \binom{n}{i} S_{k,i} * i!$
+Take binomial transform: $S_{n,k} = \sum_{i=0}^{k} {\frac {(-1)^{k-i} i^{n}} {i! * (k-i)!}}$
+This is polynomial multiplication.\\
+\Topic{Binomial Transform:}
+$a_{n} = {\sum_{i=0}^{n}} \binom {n}{i} b_{i}$\\
+$b_{n} = {\sum_{i=0}^{n}} \binom {n}{i} (-1)^(n-i) a_{i}$
+
+ 
+\Topic{Bell numbers}.
+$B_n$ is the number of partitions of $n$ elements.
+$B_0, \ldots = 1,1,2,5,15,52,203,\ldots$ \\
+$B_{n+1} = \sum_{k=0}^n {n \choose k} B_k = \sum_{k=1}^n S_{n,k}$.
+Bell triangle: $B_r=a_{r,1}=a_{r-1,r-1}$, $a_{r,c}=a_{r-1,c-1}+a_{r,c-1}$.
+%Bell triangle: 1, 1 2, 2 3 5, 5 7 10 15, 15 20 27 37 52, (last) ... (left + left above).
+ 
+% }}}
+ 
+\Topic{Mobius function}.
+$\mu(1) = 1$. $\mu(n) = 0$, if $n$ is not squarefree.
+$\mu(n) = (-1)^s$, if $n$ is the product of $s$ distinct primes.
+Let $f$, $F$ be functions on positive integers.
+If for all $n \in N$, $F(n)=\sum_{d|n} f(d)$, then $f(n) = \sum_{d|n} \mu(d) F(\frac{n}{d})$,
+and vice versa. \quad
+$\phi(n) = \sum_{d|n} \mu(d) \frac{n}{d}$.
+\quad $\sum_{d|n} \mu(d) = 1$. \\
+If $f$ is multiplicative, then $\sum_{d|n} \mu(d) f(d) = \prod_{p|n}(1-f(p))$,
+$\sum_{d|n} \mu(d)^2 f(d) = \prod_{p|n} (1+f(p))$.
+Let the problem be to find G=$\sum_{i=1}^n \sum_{j=i+1}^n $h(gcd(i,j)),here h(n) should be a multiplicative function.
+Re-write the equation like this:  G=$\sum_{g=1}^n$ h(g)*cnt[g], where cnt[g] is no. of pairs such that gcd(i,j)=g.
+Find function f(n) such that h(n)=$\sum_{d|n}$ f(d). this can be done using mobius inversion and sieve.
+G=$\sum_{d=1}^n$ h(d)*cnt2[d], where cnt2[d] is no. of pairs such that gcd(i,j) is a multiple of d.
+ 
+\Topic{Fermat's two-squares theorem}.  Odd prime $p$ can be represented
+as a sum of two squares iff $p \equiv 1 {\pmod 4}$.
+A product of two sums of two squares is a sum of two squares.
+Thus, $n$ is a sum of two squares iff every prime of
+form $p=4k+3$ occurs an even number of times in $n$'s factorization.
+ 
+\Topic{Counting Primes Fast}   To count number of primes lesser than big n. Use following recurrence. \\ dp[n][j] = dp[$n$][$j+1$] + dp[$n/p_{j}$][j]   where dp[$i$][$j$] stores count of numbers lesser than equal to $i$ having all prime divisors greater than equal to $p_{j}$. Precompute this for all i less than some small k and for others use the recurrence to compute in small time.
+
+\vspace{-7mm}
+\Section{Graphs}
+\vspace{-3mm}
+\Topic{Mirsky's Theorem} Max length chain is equal to min partitioning into antichains. Max chain is height of poset.
+\vspace{-3mm}
+ 
+\Topic{Dilworth's Theorem} Min partition into chains is equal to max length antichain. From poset create bipartite graph. Any edge from $v_{i}$ - $v_{j}$ implies  $LV_{i}$ - $RV_{j}$. Let A be the set of vertices such that neither $LV_{i}$ nor $RV_{i}$ are in vertex cover. A is an antichain of size n-max matching. To get min partition into chains, take a vertex from left side, keep taking vertices till a matching exist. Consider this as a chain. Its size is n - max matching.
+\vspace{-3mm}
+ 
+\Topic{Konig's Thoerem} In any bipartite graph, the number of edges in a maximum matching equals the number of vertices in a minimum vertex cover.
+Consider a bipartite graph where the vertices are partitioned into left ($L$) and right ($R$) sets. Suppose there is a maximum matching which partitions the edges into those used in the matching ($E_m$) and those not ($E_0$). Let $T$ consist of all unmatched vertices from L, as well as all vertices reachable from those by going left-to-right along edges from $E_0$ and right-to-left along edges from $E_m$. This essentially means that for each unmatched vertex in L, we add into T all vertices that occur in a path alternating between edges from $E_0$ and $E_m$.
+Then $(L \setminus T) \cup (R \cap T)$ is a minimum vertex cover. Intuitively, vertices in $T$ are added if they are in $R$ and subtracted if they are in $L$ to obtain the minimum vertex cover.
+\vspace{-3mm}
+ 
+\Topic{Matrix-tree theorem} Let matrix $T = [t_{ij}]$, where $t_{ij}$ is negative of the number of
+multiedges between $i$ and $j$, for $i \ne j$, and $t_{ii} = \mbox{deg}_i$.
+Number of spanning trees of a graph is equal to the determinant of
+a matrix obtained by deleting any $k$-th row and $k$-th column from $T$.
+If $G$ is a multigraph and $e$ is an edge of $G$, then the number $\tau(G)$ of
+spanning trees of $G$ satisfies recurrence $\tau(G) = \tau(G-e) + \tau(G/e)$,
+when $G-e$ is the multigraph obtained by deleting $e$, and $G/e$ is
+the contraction of $G$ by $e$ (multiple edges arising from the contraction
+are preserved.)
+
