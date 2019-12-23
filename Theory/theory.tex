@@ -85,6 +85,12 @@ $1012924417 = 483 \times 2^{21} + 1$. Primitive root: $5$.
 \Section{Maths}
 \vspace{-3mm}
 
+\Topic{Cayley's Formula}. Given a degree sequence $d_1, d_2 \cdots, d_n$ for each labeled vertices, there exists $\frac{(n-2)!}{(d_1 - 1)!(d_2 - 1)! \cdots (d_n - 1)!}$ spanning trees. Summing this for every possible degree sequence gives $n^{n-2}$. \\
+
+\Topic{Kirchhoff's Theorem}. For a multigraph $G$ with no loops, define Laplacian matrix as $L = D - A$. $D$ is a diagonal matrix with $D_{i, i} = deg(i)$, and $A$ is an adjacency matrix. If you remove any row and column of $L$, the determinant gives a number of spanning trees.\\
+
+\Topic{Burnside's lemma / Polya enumeration theorem}. let $G$ and $H$ be groups of permutations of a finite set $X$d. Let $c_m(g)$ denote the number of cycles of length $m$ in $g \in G$ when permuting $X$. The number of colorings of $X$ into n colors with exactly $r_i$ occurrences of the $i$-th color is the coefficient of $w_1^{r_1}\ldots w_n^{r_n}$ in the polynomial $P(w_1,\ldots ,w_n)=\frac{1}{\left|G\right|}\sum_{g\in G}\prod_{m\ge 1}(w_1^m+\ldots +w_n^m)^{c_m(g)}$ \\
+
 \Topic{Catalan Numbers}
 $C_{n} = \frac{1}{n+1}{{2n}\choose{n}}$. DP Recurrence : $C_{n+1} = \sum_{i=0}^{n}C_{i}C_{n-i}$ and $C_{0}=1$ .No. of balanced paranthesis. No. of paths to go from one end of matrix to another but only below main diagonal. Number of full binary trees with N+1 leaves. Number of non-isomorphic ordered trees with n vertices. Number of triangulations of polygon with N+2 sides. Number of ways to tile a stairstep shape of height n with n rectangles. The number of rooted binary trees with n internal nodes.  Number of standard Young tableaux whose diagram is a 2-by-n rectangle. i.e. the number of ways the numbers 1, 2, ..., 2n can be arranged in a 2-by-n rectangle so that each row and each column is increasing.
  
@@ -170,4 +176,7 @@ spanning trees of $G$ satisfies recurrence $\tau(G) = \tau(G-e) + \tau(G/e)$,
 when $G-e$ is the multigraph obtained by deleting $e$, and $G/e$ is
 the contraction of $G$ by $e$ (multiple edges arising from the contraction
 are preserved.)
+
+\Topic{Tutte Matrix}. For a simple undirected graph $G$, Let $M$ be a matrix with entries $A_{i, j} = 0$ if $(i, j) \notin E$ and $A_{i, j} = -A_{j, i} = X$ if $(i, j) \in E$. $X$ could be any random value. If the determinants are non-zero, then a perfect matching exists, while other direction might not hold for very small probability.\\
+
 
