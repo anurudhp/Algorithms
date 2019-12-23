@@ -13,3 +13,9 @@ void ConvexHull(vector<Vec> &pts) {
   } pts = dn;
   for (int i = SZ(up) - 2; i >= 1; i--) pts.PB(up[i]);
 }
+template<typename T> // area of convex poly
+T ConvexArea(const vector<Vect<T>> &pts) { // pts in CCW order
+  T res = 0; REP(i, SZ(pts)) {
+    res -= pts[i].cross(i==0 ? pts.back() : pts[i-1]);
+  } return res / 2;
+}

@@ -16,24 +16,16 @@ template<typename T> struct Vect { T x, y;
     return Vec(x*cos(ang) - y*sin(ang), x*sin(ang) + y*cos(ang));
   }
 };
-
 template<typename T> struct Line {
   Vec a, v; // l(r) = a + rv
   Line(const Vec& p, const Vec& q) { // through p,q
     a = p; v = q - p;
-  }
-
-  Line perpendicular() const {
-    return Line(a, a + v.rotCCW(PI/2));
-  }
-  Line perpendicular(const Vec& p) const {
+  } Line perpendicular(const Vec& p) const { // perp through p
     return Line(p, p + v.rotCCW(PI/2));
-  }
-  bool intersect(const Line& o, Vec& p) const {
+  } bool intersect(const Line& o, Vec& p) const {
     if (isZero(v.cross(o.v))) return false;
     T alpha = ((o.a - a) / (v.cross(o.v))).cross(o.v);
     p = a + v * alpha; return true;
   }
-  
 };
 #undef Vec
