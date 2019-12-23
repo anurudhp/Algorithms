@@ -15,6 +15,49 @@
  
  
 % }}} 
+
+\section {Highly Composite Numbers, Large Prime}
+\begin{minted}{cpp}
+	< 10^k          number     divisors   2 3 5 71113171923293137
+	-------------------------------------------------------------
+	1                    6            4   1 1
+	2                   60           12   2 1 1
+	3                  840           32   3 1 1 1
+	4                 7560           64   3 3 1 1
+	5                83160          128   3 3 1 1 1
+	6               720720          240   4 2 1 1 1 1
+	7              8648640          448   6 3 1 1 1 1
+	8             73513440          768   5 3 1 1 1 1 1
+	9            735134400         1344   6 3 2 1 1 1 1
+	10          6983776800         2304   5 3 2 1 1 1 1 1
+	11         97772875200         4032   6 3 2 2 1 1 1 1
+	12        963761198400         6720   6 4 2 1 1 1 1 1 1
+	13       9316358251200        10752   6 3 2 1 1 1 1 1 1 1
+	14      97821761637600        17280   5 4 2 2 1 1 1 1 1 1
+	15     866421317361600        26880   6 4 2 1 1 1 1 1 1 1 1
+	16    8086598962041600        41472   8 3 2 2 1 1 1 1 1 1 1
+	17   74801040398884800        64512   6 3 2 2 1 1 1 1 1 1 1 1
+	18  897612484786617600       103680   8 4 2 2 1 1 1 1 1 1 1 1
+
+	< 10^k    prime   # of prime          < 10^k            prime
+	-------------------------------------------------------------
+	1             7            4          10           9999999967
+	2            97           25          11          99999999977
+	3           997          168          12         999999999989
+	4          9973         1229          13        9999999999971
+	5         99991         9592          14       99999999999973
+	6        999983        78498          15      999999999999989
+	7       9999991       664579          16     9999999999999937
+	8      99999989      5761455          17    99999999999999997
+	9     999999937     50847534          18   999999999999999989
+\end{minted}
+NTT Prime:
+
+$998244353 = 119 \times 2^{23} + 1$. Primitive root: $3$.
+
+$985661441 = 235 \times 2^{22} + 1$. Primitive root: $3$.
+
+$1012924417 = 483 \times 2^{21} + 1$. Primitive root: $5$.
 \Section{Games}
 \Topic{Green HackenBush Game} If two players are playing a game where move allowed is to cut an edge of a (rooted) tree then for each node,set value of the node to xor of (1 + value of it's child) for all children of the node in the tree. For leaves, value is 0. See value of root to determine the winner. For a (rooted) graph, where each player can remove an edge from the component connected to the root and one unable to remove loses. Create bridge-tree and do same as tree except val[node] = orignalVal[node] $\oplus$ (numEdges[node] \& 1) \\
 \Topic{StairCase Nim} Stair Case from \{1...N\}. Ans = xor of $a_{even}$ \\
@@ -41,6 +84,12 @@
 \vspace{-7mm}
 \Section{Maths}
 \vspace{-3mm}
+
+\Topic{Cayley's Formula}. Given a degree sequence $d_1, d_2 \cdots, d_n$ for each labeled vertices, there exists $\frac{(n-2)!}{(d_1 - 1)!(d_2 - 1)! \cdots (d_n - 1)!}$ spanning trees. Summing this for every possible degree sequence gives $n^{n-2}$. \\
+
+\Topic{Kirchhoff's Theorem}. For a multigraph $G$ with no loops, define Laplacian matrix as $L = D - A$. $D$ is a diagonal matrix with $D_{i, i} = deg(i)$, and $A$ is an adjacency matrix. If you remove any row and column of $L$, the determinant gives a number of spanning trees.\\
+
+\Topic{Burnside's lemma / Polya enumeration theorem}. let $G$ and $H$ be groups of permutations of a finite set $X$d. Let $c_m(g)$ denote the number of cycles of length $m$ in $g \in G$ when permuting $X$. The number of colorings of $X$ into n colors with exactly $r_i$ occurrences of the $i$-th color is the coefficient of $w_1^{r_1}\ldots w_n^{r_n}$ in the polynomial $P(w_1,\ldots ,w_n)=\frac{1}{\left|G\right|}\sum_{g\in G}\prod_{m\ge 1}(w_1^m+\ldots +w_n^m)^{c_m(g)}$ \\
 
 \Topic{Catalan Numbers}
 $C_{n} = \frac{1}{n+1}{{2n}\choose{n}}$. DP Recurrence : $C_{n+1} = \sum_{i=0}^{n}C_{i}C_{n-i}$ and $C_{0}=1$ .No. of balanced paranthesis. No. of paths to go from one end of matrix to another but only below main diagonal. Number of full binary trees with N+1 leaves. Number of non-isomorphic ordered trees with n vertices. Number of triangulations of polygon with N+2 sides. Number of ways to tile a stairstep shape of height n with n rectangles. The number of rooted binary trees with n internal nodes.  Number of standard Young tableaux whose diagram is a 2-by-n rectangle. i.e. the number of ways the numbers 1, 2, ..., 2n can be arranged in a 2-by-n rectangle so that each row and each column is increasing.
@@ -127,4 +176,7 @@ spanning trees of $G$ satisfies recurrence $\tau(G) = \tau(G-e) + \tau(G/e)$,
 when $G-e$ is the multigraph obtained by deleting $e$, and $G/e$ is
 the contraction of $G$ by $e$ (multiple edges arising from the contraction
 are preserved.)
+
+\Topic{Tutte Matrix}. For a simple undirected graph $G$, Let $M$ be a matrix with entries $A_{i, j} = 0$ if $(i, j) \notin E$ and $A_{i, j} = -A_{j, i} = X$ if $(i, j) \in E$. $X$ could be any random value. If the determinants are non-zero, then a perfect matching exists, while other direction might not hold for very small probability.\\
+
 
