@@ -1,0 +1,50 @@
+\Topic{Burnside's lemma/Polya enumeration theorem}. Let $G$ and $H$ be groups of permutations of a finite set $X$. Let $c_m(g)$ denote the number of cycles of length $m$ in $g \in G$ when permuting $X$. The number of colorings of $X$ into n colors with exactly $r_i$ occurrences of the $i$-th color is the coefficient of $w_1^{r_1}\ldots w_n^{r_n}$ in the polynomial $P(w_1,\ldots ,w_n)$ is $$\frac{1}{|G|}\sum_{g\in G}\prod_{m \ge 1}(w_1^m + \ldots +w_n^m)^{c_m(g)}$$
+
+\Topic{Standard Summations:}
+$$\left(m+1\right) * \sum_{k=0}^{n} k ^ m = \left(n+1\right)^{m+1} - \left(\sum_{r=2}^{m+1} \left({{m+1}\choose{r}}  \sum_{k=0}^{n} k ^ {m+1-r} \right) \right)$$
+$$S_{n} = \sum_{k=1}^n \big(a + (k-1)d\big) r^{k-1} =   \frac{a - \big(a+(n-1)d\big)r^{n}}{1-r} + \frac{dr(1-r^{n-1})}{(1-r)^{2}}$$
+
+\Topic{Catalan Numbers}
+\begin{itemize}
+  \itemsep -0.5em 
+\item $C_{n} = \frac{1}{n+1}{{2n}\choose{n}}$
+\item Recurrence: $C_{0}=1$, $C_{n+1} = \sum_{i=0}^{n}C_{i}C_{n-i}$
+\item No. of balanced paranthesis. 
+\item No. of paths to go from one end of matrix to another but only below main diagonal. 
+\item No. of full binary trees with $N+1$ leaves. 
+\item No. of non-isomorphic ordered trees with $n$ vertices. 
+\item No. of triangulations of polygon with $N+2$ sides. 
+\item No. of ways to tile a stairstep shape of height $n$ with $n$ rectangles. 
+\item No. of rooted binary trees with n internal nodes.
+\item No. of standard Young tableaux whose diagram is a 2-by-$n$ rectangle. i.e. the number of ways the numbers $1, 2, \ldots, 2n$ can be arranged in a 2-by-$n$ rectangle so that each row and each column is increasing.
+\end{itemize}
+
+\Topic{Pascal Triangle Properties:}\\
+$$\sum_{i=0}^{n/2} {\binom {n-i}{i}} = F_{n+1}} ; \;\;\; \sum_{k=-a}^{a} {(-1)}^k {\binom {2a}{k+a}} = \frac{(3a)!}{(a!)^3}$$
+$$\sum_{j=0}^{k} {\binom {m}{j}}*{\binom {n-m}{k-j}} = {\binom {n}{k}} ; \;\;\; \sum_{m=0}^{n} {\binom {m}{j}}*{\binom {n-m}{k-j}} = {\binom {n+1}{k+1}}$$
+$$\sum_{i=1}^{n} {\binom {i}{j}} = {\binom {n+1}{j+1}} ; \;\;\;\; \sum_{k=-a}^{a} {(-1)}^k {\binom {a+b}{a+k}}{\binom {b+c}{b+k}}{\binom {c+a}{c+k}} = \frac{(a+b+c)!}{(a!)(b!)(c!)}}$$
+
+\Topic{Stirling numbers of $1^{st}$ kind}.
+$s_{n,k}$ is $(-1)^{n-k}$ times the number of permutations of $n$ elements with
+exactly $k$ permutation cycles.
+$|s_{n,k}| = |s_{n-1,k-1}| + (n-1) |s_{n-1,k}|$.
+
+\Topic{Binomial Transform:}
+$$a_{n} = {\sum_{i=0}^{n}} \binom {n}{i} b_{i} \implies b_{n} = {\sum_{i=0}^{n}} \binom {n}{i} (-1)^{n-i} a_{i}$$
+
+\Topic{Stirling numbers of $2^{nd}$ kind}.
+$S_{n,k}$ is the number of ways to partition a set of $n$ elements into
+exactly $k$ non-empty subsets.
+$S_{n,k} = S_{n-1,k-1} + k S_{n-1,k} \bigg,$ 
+$S_{n,1} = S_{n,n} = S_{0,0} = 1 \bigg,$
+$S_{n,0} = S_{0,n} = 0$
+$$n^{k} = \sum_{i=0}^n i! \binom{n}{i} S_{k,i} \implies S_{n,k} = \sum_{i=0}^{k} {\frac {(-1)^{k-i} i^{n}} {i! * (k-i)!}}$$
+
+\Topic{Bell numbers}. $B_n$ is the number of partitions of $n$ elements.
+$$B_{n+1} = \sum_{k=0}^n {n \choose k} B_k = \sum_{k=1}^n S_{n,k}$$
+
+\Topic{Postage stamps/McNuggets problem}.  Let $a$, $b$ be relatively-prime integers.
+There are exactly $\frac{1}{2}(a-1)(b-1)$ numbers \emph{not} of form $ax+by$ ($x,y \ge 0$),
+and the largest is $(a-1)(b-1)-1 = ab - a - b$.
+ 
+\Topic{Ballot Theorem}. If $A$ receives $p$ votes and $B$ receives $q$ votes with $p > q$ then probability that $A$ is strictly ahead of $B$ at all times is given by $\frac{p-q}{p+q}$. If ties allowed : $\frac{p+1-q}{p+1}$

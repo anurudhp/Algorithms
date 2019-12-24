@@ -1,0 +1,36 @@
+\Topic{Mirsky's Theorem} Max length chain is equal to min partitioning into antichains. Max chain is height of poset.
+
+\Topic{Dilworth's Theorem} Min partition into chains is equal to max length antichain. From poset create bipartite graph. Any edge from $v_{i}$ - $v_{j}$ implies  $LV_{i}$ - $RV_{j}$. Let A be the set of vertices such that neither $LV_{i}$ nor $RV_{i}$ are in vertex cover. A is an antichain of size n-max matching. To get min partition into chains, take a vertex from left side, keep taking vertices till a matching exist. Consider this as a chain. Its size is n - max matching.
+
+\Topic{Konig's Thoerem} In any bipartite graph, the number of edges in a maximum matching equals the number of vertices in a minimum vertex cover.
+Consider a bipartite graph where the vertices are partitioned into left ($L$) and right ($R$) sets. Suppose there is a maximum matching which partitions the edges into those used in the matching ($E_m$) and those not ($E_0$). Let $T$ consist of all unmatched vertices from L, as well as all vertices reachable from those by going left-to-right along edges from $E_0$ and right-to-left along edges from $E_m$. This essentially means that for each unmatched vertex in L, we add into T all vertices that occur in a path alternating between edges from $E_0$ and $E_m$.
+Then $(L \setminus T) \cup (R \cap T)$ is a minimum vertex cover. Intuitively, vertices in $T$ are added if they are in $R$ and subtracted if they are in $L$ to obtain the minimum vertex cover.
+
+\Topic{Matrix-tree theorem} Let matrix $T = [t_{ij}]$, where $t_{ij}$ is negative of the number of
+multiedges between $i$ and $j$, for $i \ne j$, and $t_{ii} = \mbox{deg}_i$.
+Number of spanning trees of a graph is equal to the determinant of
+a matrix obtained by deleting any $k$-th row and $k$-th column from $T$.
+If $G$ is a multigraph and $e$ is an edge of $G$, then the number $\tau(G)$ of
+spanning trees of $G$ satisfies recurrence $\tau(G) = \tau(G-e) + \tau(G/e)$,
+when $G-e$ is the multigraph obtained by deleting $e$, and $G/e$ is
+the contraction of $G$ by $e$ (multiple edges arising from the contraction
+are preserved.)
+
+\Topic{Cycle Spaces} The (binary) cycle space of an undirected graph is the set of its Eulerian subgraphs.
+This set of subgraphs can be described algebraically as a vector space over the two-element finite field.
+One way of constructing a cycle basis is to form a spanning forest of the graph, and then for each edge $e$ that does not belong to the forest, form a cycle C  $C_{e}$ consisting of $e$ together with the path in the forest connecting the endpoints of $e$. The set of cycles $C_{e}$ formed in this way are linearly independent (each one contains an edge $e$ that does not belong to any of the other cycles) and has the correct size $m − n + c$ to be a basis, so it necessarily is a basis. This is fundamental cycle basis.
+
+\Topic{Cut Spaces} The family of all cut sets of an undirected graph is known as the cut space of the graph. It forms a vector space over the two-element finite field of arithmetic modulo two, with the symmetric difference of two cut sets as the vector addition operation, and is the orthogonal complement of the cycle space.      
+To compute the basis vector for the cut space, consider any spanning tree of the graph. For every edge $e$ in the spanning tree, remove the edge and consider the cut formed. Thus dimension of the basis vector for cut space is n-1.
+
+\Topic{Number of perfect matchings of a bipartite graph} is equal to the permanent of the adjacency matrix obtained. To check the parity of the number of perfect matchings, we can evaluate the permanent of the matrix in $Z_{2}$ which can be done easily as Permanent(A) = Determinent(A).
+
+\Topic{Tutte Matrix}. For a simple undirected graph $G$, Let $M$ be a matrix with entries $A_{i, j} = 0$ if $(i, j) \notin E$ and $A_{i, j} = -A_{j, i} = X$ if $(i, j) \in E$. $X$ could be any random value. If the determinants are non-zero, then a perfect matching exists, while other direction might not hold for very small probability.
+
+\Topic{Cayley's Formula}. Given a degree sequence $d_1, d_2 \cdots, d_n$ for each labeled vertices, there exists $\frac{(n-2)!}{(d_1 - 1)!(d_2 - 1)! \cdots (d_n - 1)!}$ spanning trees. Summing this for every possible degree sequence gives $n^{n-2}$.
+
+\Topic{Kirchhoff's Theorem}. For a multigraph $G$ with no loops, define Laplacian matrix as $L = D - A$. $D$ is a diagonal matrix with $D_{i, i} = deg(i)$, and $A$ is an adjacency matrix. If you remove any row and column of $L$, the determinant gives a number of spanning trees.
+
+\Topic{Brook's Theorem} If a graph is not a complete graph or an odd cycle then it can be coloured with max degree \# of colours.
+
+\Topic{Turan's Theorem} A graph without $K_{r+1}$ and N verticies can have atmax $\lfloor \frac{N^{2}}{2} * (1 - \frac{1}{r}) \rfloor$ edges. 

@@ -1,0 +1,75 @@
+\Topic{Linear diophantine equation}. $ax+by=c$.
+Let $d=\gcd(a,b)$. A solution exists iff $d|c$.
+If $(x_0,y_0)$ is any solution, then all solutions are given by
+$(x,y) = (x_0 + \frac{b}{d}t, y_0 - \frac{a}{d}t)$, $t \in {\mathbb Z}$.
+To find some solution $(x_0, y_0)$, use extended GCD to solve
+$ax_0 + by_0 = d = \gcd(a, b)$, and multiply its solutions by $\frac{c}{d}$.
+Linear diophantine equation in $n$ variables:
+$a_1 x_1 + \dots + a_n x_n = c$ has solutions iff $\gcd(a_1, \dots, a_n) | c$.
+To find some solution, let $b=\gcd(a_2, \dots, a_n)$,
+solve $a_1 x_1 + by = c$, and iterate with $a_2 x_2 + \dots = y$.
+Multiplicative inverse of $a$ modulo $m$:
+$x$ in $ax + my = 1$, or $a^{\phi(m)-1} \pmod{m}$.
+
+\Topic{Chinese Remainder Theorem}.
+System $x \equiv a_i \pmod{m_i}$ for $i=1,\dots,n$, with
+pairwise relatively-prime $m_i$ has a unique solution modulo $M = m_1 m_2 \dots m_n$:
+$x = a_1 b_1 \frac{M}{m_1} + \dots + a_n b_n \frac{M}{m_n} \pmod{M}$,
+where $b_i$ is modular inverse of $\frac{M}{m_i}$ modulo $m_i$.
+ 
+\Topic{Generalized CRT}.
+System $x \equiv a \pmod{m}$, $x \equiv b \pmod{n}$ has solutions
+iff $a \equiv b \pmod{g}$, where $g=\gcd(m,n)$.
+The solution is unique modulo $L=\frac{mn}{g}$, and equals:
+$x \equiv a + T(b-a) m/g \equiv b + S(a-b) n/g \pmod{L}$,
+where $S$ and $T$ are integer solutions of $mT + nS = \gcd(m,n)$.
+ 
+\Topic{Euler's phi function}.
+$\phi(n)=|\{m \in {\mathbb N}, m \le n, \gcd(m, n) = 1 \}|$. \\
+$\phi(mn) = \frac{\phi(m) \phi(n) \gcd(m,n)}{\phi(\gcd(m,n))}$. \quad
+$\phi(p^a) = p^{a-1} (p-1)$. \quad
+$\sum_{d|n} \phi(d) = \sum_{d|n} \phi(\frac{n}{d}) = n$.
+ 
+\Topic{Euler's theorem}. $a^{\phi(n)} \equiv 1\pmod{n}$, if $\gcd(a,n)=1$.
+ 
+\Topic{Wilson's theorem}. $p$ is prime iff $(p - 1)! \equiv -1 \pmod p$.
+ 
+\Topic{Mobius function}.
+$\mu(1) = 1$. $\mu(n) = 0$, if $n$ is not squarefree.
+$\mu(n) = (-1)^s$, if $n$ is the product of $s$ distinct primes.
+Let $f$, $F$ be functions on positive integers.
+If for all $n \in N$, $F(n)=\sum_{d|n} f(d)$, then $f(n) = \sum_{d|n} \mu(d) F(\frac{n}{d})$,
+and vice versa. \quad
+$\phi(n) = \sum_{d|n} \mu(d) \frac{n}{d}$.
+\quad $\sum_{d|n} \mu(d) = [n==1]. 
+$$sum\_divisors(\sigma(n)) = \sum_{d|n} d = \sum_{d|n} \phi(d) * num\_div(n/d)$. \\
+If $f$ is multiplicative, then $\sum_{d|n} \mu(d) f(d) = \prod_{p|n}(1-f(p))$,
+$\sum_{d|n} \mu(d)^2 f(d) = \prod_{p|n} (1+f(p))$.
+Let the problem be to find G=$\sum_{i=1}^n \sum_{j=i+1}^n $h(gcd(i,j)),here h(n) should be a multiplicative function.
+Re-write the equation like this:  G=$\sum_{g=1}^n$ h(g)*cnt[g], where cnt[g] is no. of pairs such that gcd(i,j)=g.
+Find function f(n) such that h(n)=$\sum_{d|n}$ f(d). this can be done using mobius inversion and sieve.
+G=$\sum_{d=1}^n$ h(d)*cnt2[d], where cnt2[d] is no. of pairs such that gcd(i,j) is a multiple of d.
+ 
+\Topic{Primitive roots}.  If the order of $g$ modulo $m$ (min $n>0$:
+$g^n \equiv 1 \pmod{m}$) is $\phi(m)$, then $g$ is called a primitive root.
+If $Z_m$ has a primitive root, then it has $\phi(\phi(m))$ distinct primitive
+roots. $Z_m$ has a primitive root iff $m$ is one of $2$, $4$,
+$p^k$, $2p^k$, where $p$ is an odd prime.
+If $Z_m$ has a primitive root $g$, then for all $a$ coprime to $m$,
+there exists unique integer $i=\text{ind}_g(a)$ modulo $\phi(m)$,
+such that $g^i \equiv a \pmod{m}$.
+$\text{ind}_g(a)$ has logarithm-like properties:
+$\text{ind}(1) = 0$, $\text{ind}(ab) = \text{ind}(a) + \text{ind}(b)$.
+If $p$ is prime and $a$ is not divisible by $p$, then congruence
+$x^n \equiv a \pmod{p}$ has $\gcd(n, p-1)$ solutions if
+$a^{(p-1)/\gcd(n,p-1)} \equiv 1 \pmod{p}$, and no solutions otherwise.
+(Proof sketch: let $g$ be a primitive root, and
+$g^i \equiv a \pmod{p}$, $g^u \equiv x \pmod{p}$.
+$x^n \equiv a \pmod{p}$ iff $g^{nu} \equiv g^i \pmod{p}$ iff $nu \equiv i \pmod{p}$.)
+
+\Topic{Fermat's two-squares theorem}.  Odd prime $p$ can be represented
+as a sum of two squares iff $p \equiv 1 {\pmod 4}$.
+A product of two sums of two squares is a sum of two squares.
+Thus, $n$ is a sum of two squares iff every prime of
+form $p=4k+3$ occurs an even number of times in $n$'s factorization.
+ 

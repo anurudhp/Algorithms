@@ -1,0 +1,41 @@
+\Topic{Useful NTT mods and generators}
+\begin{itemize}
+\itemsep -0.5em
+\item $998244352 = 1 + 2^{23} \times 7 \times 17$, $g = 3$
+\item $985661441 = 1 + 2^{22} \times 5 \times 47$, $g = 3$
+\item $1012924417 = 1 + 2^{21} \times 483$, $g = 5$
+\end{itemize}
+
+\Topic{Fast Walsh–Hadamard transform} (Don't forget to normalize)
+\begin{itemize}
+  \itemsep -0.5em
+  \item \textbf{XOR:} $T = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} = T^{-1}$
+  \item \textbf{AND:} $T = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}, T^{-1} = \begin{bmatrix} 1 & -1 \\ 0 & 1 \end{bmatrix}$
+  \item \textbf{OR:} $T = \begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix}, T^{-1} = \begin{bmatrix} 1 & 0 \\ -1 & 1 \end{bmatrix}$
+\end{itemize}
+
+\Topic{Mod Inverse} $1$ to $n \bmod m$: inv$(i) = - \left\lfloor \frac{m}{i} \right\rfloor \cdot$ inv $(m \bmod i) \bmod m$
+
+% \Topic{Zeta Transformation}
+% \begin{itemize}
+%   \item Disjoint Subset Convolution: $$ \sum_{c=0}^{N} \sum_{a=0}^{c} p_{c} CONV(p_{a}f * p_{c-a}g) $$
+% \end{itemize}
+% - To solve problem of type is it possible to divide a set into K sets, use the following dp[i][s] = 1 if it's possible to divide s into i sets else 0. Then find suitable relation between dp[i+1][s] and dp[i][.] \\
+% - $ f[s] = \sum_{s1 U .. = s}{} a(s1) * b(s2) ... :: f = meu(zeta(a).*zeta(b).*.....) $ \\ - \# of perfect matching in a bipartile graph $ = \sum_{s \subseteq N} (-1)^{|N-s|} \prod_{i=1}^{N} \sum_{j \epsilon s} [ij \epsilon E]$ \\
+% - \# of perfect matching in a general graph $ = \sum_{s\subseteq N} (-1)^{|N-s|} \binom{E[s]}{N/2}$ where $E[s] =$ # of edges that have end points in S. \\
+% - to calcualte $f[s] = \sum_{s \subseteq s1} g[s1] $ use 
+% $ f_{i+1}[s] =$ if $(i+1)^{th}$ bit is 1 $f_{i}[s]$ else $f_{i}[s] + f_{i}[s+2^{i}] $ \\
+% - to calculate $V = \sum_{s1\cap s2 = \phi} f[s1]*g[s2]$ use $V=meu(supertsetsum(f) .* supersetsum(g))$ then $ans = V[Complete Set]$ \\ 
+
+% \Topic{Correlation} $f[n]=\sum_{}{} h[n+x]*g[x]$ \\
+% $temp=convolution(h,reverse(g))$ then $f[n]=temp[n+len(g)-1]$ \\
+% - to find number of occurrences of string B in A where B can have '?' characters do : replace char c with $e^{\frac{2\pi i * (c -'a')}{26}}$ in A and replace char c with $e^{-\frac{2\pi i * (c -'a')}{26}}$, '?' with 0 in B. B occurs at i iff $correlation(A,B)[i] = |\# of B[i]'s \neq ?| $ \\
+
+\Topic{Lagrange's Formula} For any set of $n$ points such that all $x_{k}$ are distinct, there is unique polynomial $A(n)$ of degree $\le n - 1$. $$A(x) = \sum_{k=0}^{n-1} y_{k} \frac{\prod_{j\neq k}(x-x_{j})}{\prod_{j\neq k}(x_{k}-x_{j})}$$
+ 
+\Topic{2D Recurrence using FFT} For any 2D recurrence of the form $F_{n,p} = \sum_{i=0}^{k}a_{i}(n).F_{n-1,p-i}$. We can write it as follows:
+$$\sum_{i=0}^{kn}F_{n,i}.x^{i} = \prod_{i=1}^{n} \sum_{j=0}^{k}a_{j}(i).x^{j}$$
+
+\Topic{Trick for 2D FFT} $\frac{P(1)+P(\delta)+...+P(\delta^{n-1})}{n}$ is sum of all indexes of polynomial $P$ divisible by $n$ where $\delta = n^{th}$ root of unity.
+
+\Topic{Leibniz formula for Determinants} $$det(A) = \sum_{\sigma \in S_{n}} \epsilon(\sigma) \prod_{i=1}^{n}a_{\sigma(i),i}$$ where $\epsilon$ is the levi-civita (1 for even, -1 for odd permutations)
