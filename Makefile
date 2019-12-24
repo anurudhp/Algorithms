@@ -1,12 +1,12 @@
 all: pt10 pt12
 
-
 pt10:template
 	node_modules/notebook-generator/bin/notebookgen \
 		-s 10 \
 		-p a4paper \
 		-o notebook10.pdf \
 		Templates
+
 pt12:template
 	node_modules/notebook-generator/bin/notebookgen \
 		-s 12 \
