@@ -1,7 +1,8 @@
-//call dfsMCT,change solve and dfs1
-vi vpart[L], g[L]; //H: depth 
-bool vis[L];//par:parent in cent
-int SZ[L], par[L], part[L], H[L], cpart;//cpart:no of parts in cent
+// call dfsMCT,change solve and dfs1
+const int N = 2e5;
+VI vpart[N], g[N]; // H: depth 
+bool vis[N];// par:parent in cent
+int SZ[N], par[N], part[N], H[N], cpart;// cpart:no of parts in cent
 //vpart[i]:nodes in part i
 int dfsSZ(int v, int p = -1) { 
   SZ[v] = 1;
@@ -20,17 +21,17 @@ void dfs1(int v, int r, int p) {
 void solve(int r,int szr) { 
   H[r] = cpart = 0; 
   dfs1(r, r, -1);
-  rep(i, 1, cpart + 1) { /* update all */ 
+  FOR(i, 1, cpart + 1) { /* update all */ 
     for(int u: vpart[i]) /* add i part */; 
   }
-  rep(i, 1, cpart+1) { 
+  FOR(i, 1, cpart+1) { 
       for(int u: vpart[i]) /* rem i part */;
       for(int u: vpart[i]) /* update ans */;
       for(int u: vpart[i]) /* add i part */;
   } 
   /* ans for root */ ; 
   // if the container used for storing isn't local.
-  rep(i, 1, cpart + 1) { /* remove all */ 
+  FOR(i, 1, cpart + 1) { /* remove all */ 
     for(int u: vpart[i]) /* remove i part */;  } } 
 void dfsMCT (int u, int p = -1) { 
   dfsSZ(u);

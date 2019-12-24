@@ -1,3 +1,4 @@
+const int N = 2e5, M = 4e5;
 vector <int> g[N], Tree[N]; // g is an edge-list 
 int U[M], V[M], W[M], dsu[N], t, arr[N];
 bool vis[N], is_bridge[M]; 
@@ -22,9 +23,9 @@ int dfs0(int v, int edge){
   return dbe; 
 }
 void build_tree(int n, int m){
-  rep(i, 1, n + 1) dsu[i] = i;
-  rep(i, 1, n + 1) if(!vis[i]) dfs0(i, -1);
-  rep(i, 1, m + 1) {
+  FOR(i, 1, n + 1) dsu[i] = i;
+  FOR(i, 1, n + 1) if(!vis[i]) dfs0(i, -1);
+  FOR(i, 1, m + 1) {
     if(f(U[i]) != f(V[i])) {
       Tree[f(U[i])].push_back(f(V[i])); 
       Tree[f(V[i])].push_back(f(U[i]));
