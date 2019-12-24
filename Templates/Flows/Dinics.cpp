@@ -1,5 +1,5 @@
 struct Dinic { using FT = int;
-  static const FT INF = 1 << 30; // CHOSE CAREFULLY!
+  static const FT INF = 1 << 30; // CHOOSE CAREFULLY!
   struct Edge { int from, to; FT cap, flow = 0;
     Edge(int from, int to, FT cap) : from(from), to(to), cap(cap) {}
   }; 
