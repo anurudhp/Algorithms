@@ -6,8 +6,7 @@ struct point { DBL x,y,z;
   point(CPREF p){x=p.x;y=p.y;z=p.z;}
   bool operator == (CPREF p) const {
     return eq(x,p.x) && eq(y,p.y) && eq(z,p.z);
-  } 
-  bool operator < (CPREF p) const {
+  } bool operator < (CPREF p) const {
     if(eq(x,p.x) && eq(y,p.y)) {return z<p.z;}
     if(eq(x,p.x)) {return y<p.y;} return x<p.x;
   } point operator+ (CPREF p) const {
