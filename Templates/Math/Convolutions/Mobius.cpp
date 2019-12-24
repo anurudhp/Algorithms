@@ -1,14 +1,22 @@
-vi MF(int N) {//return vector with mobious inverse of 1->N
-    vi MB(N+1,0) ; ll temp ;
-    MB[1] = 2 ;
-    rep(i,2,N+1) if(!MB[i]) {
-        MB[i] = 1 ; temp = (ll)i*(ll)i ;
-        if(temp<=N) for(int j=temp ;j<=N;j+=temp) MB[j]=-1 ;
-        for(int j = i<<1;j<=N;j+=i) if(MB[j]!=-1) ++MB[j] ;
-    } FEN(i,N)  MB[i]=(MB[i]==-1)?0:(MB[i]&1)?-1:1;
-    return MB ;
-}vi dirichletConv(vi &A,vi &B,int N){//H(n)=sum(x,y:x*y=n) A[x]*B[y]for[1,N]
-    vi ans(N+1,0) ;
-    FEN(i,N)for(int j=i;j<=N;j+=i)ans[j]+=A[i]*B[j/i] ;
-    return ans ;
+VI Mobius(int N) { // return mu(n) for n in [1,N]
+  VI mu(N + 1, 0); mu[1] = 2;
+  FOR(i, 2, N + 1) if (mu[i] == 0) {
+    mu[i] = 1; LL ii = i*i;
+    if (ii <= N) {
+      for (int j = ii; j <= N; j += ii) {
+        mu[j] = -1;
+      }
+    }
+    for (int j = i << 1; j <= N; j += i) {
+      if (mu[j] != -1) ++mu[j];
+    }
+  }
+  FOR(i, 1, N + 1) {
+    mu[i] = (mu[i] == -1) ? 0 : (mu[i] & 1) ? -1 : 1;
+  }
+  return mu;
+} VI DirichletConvolution(const VI &A, const VI &B, int N) {
+  VI ans(N+1,0); // H(n) = sum{x,y:x*y=n} A[x]*B[y] for [1,N]
+  FOR(i,1,N+1) for(int j=i;j<=N;j+=i) ans[j] += A[i]*B[j/i];
+  return ans;
 }

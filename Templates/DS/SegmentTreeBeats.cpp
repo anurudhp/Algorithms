@@ -7,8 +7,7 @@
 void modify(int node, int l, int r, int ll, int rr) {
   if (break_condition()) return;
   if (tag_condition()) {puttag(node); return;}
-  pushdown(node);
-  int mid = (l + r) >> 1;
+  pushdown(node); int mid = (l + r) >> 1;
   modify(node * 2, l, mid, ll, rr);
   modify(node * 2 + 1, mid + 1, r, ll ,rr);
   update();

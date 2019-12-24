@@ -1,31 +1,7 @@
-/* [u => v: edge u --> v] [u or v: ~u => v, ~v => u]
-[u xor v: (u or v) and (~u or ~v)] 
-[u eq v: (u or ~v) and (~u or v)] [u: u or u]; */
-vector<int> revadj[NODES], adj[NODES], top_sort, working;
-int marked[NODES], comp[NODES], c = 0;
-stack<int> finishing;
-void dfs1(int v) {
-  marked[v] = true;
-  for (auto i: adj[v]) if (marked[i] == 0) dfs1(i);
-  top_sort.push_back(v);
-  finishing.push(v); }
-void dfs2(int v) {
-  marked[v] = true;
-  for (auto i: revadj[v]) if (marked[i] == 0) dfs2(i);
-  comp[v] = c;
-}// in main
-for(int i=2; i<=(2*m+1); ++i) if(!marked[i]) dfs1(i);
-memset(marked, 0, sizeof marked);
-while(finishing.size()) {
-  if(!marked[finishing.top()]){
-    c++; dfs2(finishing.top());
-  } finishing.pop();
-}
-for(int i=2; i<=(2*m+1); ++i)
-  if(comp[i] == comp[i^1]) { printf("No\n"); return 0; }
-memset(marked, 0, sizeof marked);
-for(auto &z: top_sort){
-  if(marked[z>>1] == 0) {
-    marked[z>>1] = 1;
-    if((z & 1) == 0) working.push_back(z>>1);
-  } } // print working
+VVI adj; // indexing: var(i) = 2i, not(i) = 2i+1
+void implies(int u, int v) { adj[u].PB(v); }
+void add_or (int x, int y) { implies(1^x, y); implies(1^y, x); }
+void add_xor(int x, int y) { add_or(x, y); add_or(1^x, 1^y); }
+void add_eq (int x, int y) { implies(x, y); implies(y, x); }
+void add_true(int x) { implies(1^x, x); }
+// Run SCC, assign true greedily in reverse toposort order

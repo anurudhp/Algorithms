@@ -4,8 +4,7 @@ struct node{ // use suff_link, smart_link after copying
   node(){ SET(next,-1); SET(smt_lnk,0); suf_lnk=0;len=0; }
 };
 struct eertree {
-  int rto, rte, n, last; VI s;
-  vector<node> tree;
+  int rto, rte, n, last; VI s; vector<node> tree;
   eertree(): rto(0), rte(1), n(0), last(1), s(1,-1), tree(2) {
     tree[rto].suf_lnk = tree[rte].suf_lnk = rto;
     tree[rto].len = -1; tree[rte].len=0;
