@@ -1,0 +1,25 @@
+void mult(int a[] , int b[]){
+	for(int i = 0 ; i <= n ; ++i){
+		moba[popcnt[i]][i] = a[i];
+		mobb[popcnt[i]][i] = b[i];
+	}
+//SOS DP for moba[i] and mobb[i] for all i
+for(int i = 0 ; i < LN ; ++i){
+		for(int j = 0 ; j < LN ; ++j){
+			for(int k = 0 ; k <= n ; ++k){
+				if((k >> j) & 1){
+					moba[i][k] += /*-= for inverse SOSDP*/ moba[i][k ^ (1 << j)];
+					mobb[i][k] += /*-= for inverse SOSDP*/ mobb[i][k ^ (1 << j)];
+				}}}} // end SOSDP
+	for(int i = 0 ; i <= n ; ++i){
+		for(int j = 0 ; j < LN ; ++j){
+			int res = 0;
+			for(int k = 0 ; k <= j ; ++k){
+				res += moba[k][i] * mobb[j - k][i];
+			}
+			mobc[j][i] = res;
+		}}
+//Inverse SOS DP mobc[i] for all i
+	for(int i = 0 ; i <= n ; ++i){
+		result[i] = mobc[popcnt[i]][i];
+	}}
