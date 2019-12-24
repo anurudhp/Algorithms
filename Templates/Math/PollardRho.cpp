@@ -6,4 +6,4 @@ long long rho(long long n, long long x0=2, long long c=1) {
   while (g == 1) {
     x = f(x, c, n); y = f(y, c, n);
     y = f(y, c, n); g = gcd(abs(x - y), n);
-}return g;}//g = n if composite, else n is the factor
+}return g;}//if g = n => repeat with different x0/c, else g is the factor
