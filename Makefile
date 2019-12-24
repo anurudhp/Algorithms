@@ -1,4 +1,4 @@
-all: pt10 pt12
+all: pt12
 
 pt10:template
 	node_modules/notebook-generator/bin/notebookgen \

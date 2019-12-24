@@ -1,0 +1,301 @@
+\let\le=\leqslant
+\let\ge=\geqslant
+ 
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{-5mm}
+% \pagestyle{fancy}
+\newcommand{\Topic}{\paragraph}
+% \renewcommand{\headrulewidth}{0pt}
+% \renewcommand{\footrulewidth}{0pt}
+ 
+\newcommand{\Section}[1]{
+ \section*{#1}
+ \addcontentsline{toc}{subsection}{#1}
+ \vspace{2mm}
+}
+ 
+ 
+% }}} 
+
+% \Topic {Highly Composite Numbers, Large Prime}
+% \begin{minted}{cpp}
+%     < 10^k          number     divisors  
+%     -------------------------------------
+%     1                    6            4
+%     2                   60           12
+%     3                  840           32  
+%     4                 7560           64
+%     5                83160          128  
+%     6               720720          240  
+%     7              8648640          448  
+%     8             73513440          768  
+%     9            735134400         1344  
+%     10          6983776800         2304  
+%     11         97772875200         4032  
+%     12        963761198400         6720  
+%     13       9316358251200        10752  
+%     14      97821761637600        17280  
+%     15     866421317361600        26880  
+%     16    8086598962041600        41472  
+%     17   74801040398884800        64512  
+%     18  897612484786617600       103680  
+% \end{minted}
+\Section{Games}
+\Topic{Green HackenBush Game} If two players are playing a game where move allowed is to cut an edge of a (rooted) tree then for each node,set value of the node to xor of (1 + value of it's child) for all children of the node in the tree. For leaves, value is 0. See value of root to determine the winner. For a (rooted) graph, where each player can remove an edge from the component connected to the root and one unable to remove loses. Create bridge-tree and do same as tree except val[node] = orignalVal[node] $\oplus$ (numEdges[node] \& 1) \\
+% \vspace{-3mm}
+\Topic{Mis\`{e}re Nim}.
+A position with pile sizes $a_1, a_2, \dots, a_n \ge 1$,
+not all equal to $1$, is losing iff $a_1 \oplus a_2 \oplus \dots \oplus a_n = 0$
+(like in normal nim.)
+A position with $n$ piles of size $1$ is losing iff $n$ is \emph{odd}.\newline
+\Topic{StairCase Nim} Stair Case from \{1...N\}. Ans = xor of $a_{even}$ \\
+% }}}
+\Topic{k-Nim}. One Player can reduce the size of \{1...k\} piles. Starting position is loosing iff for all $j \epsilon \{0...LOGMAX\} \sum_{i=1}^{N} a_{i}\&2^{j} = 0$ mod (k+1).
+% \vspace{-3mm}
+\\
+
+%\Topic{3D rotation} by ccw angle $\phi$ around axis $\mathbf{n}$:
+%$\mathbf{r}' =
+%   \mathbf{r} \cos\phi +
+%   \mathbf{n} (\mathbf{n} \cdot \mathbf{r}) (1 - \cos\phi) +
+%   (\mathbf{n} \times \mathbf{r}) \sin\phi$
+% http://mathworld.wolfram.com/RotationFormula.html
+% note: order of n and r in the last term is changed,
+% as we're rotating vector r, and not the coordinate system here
+ 
+%\Topic{Plane equation from 3 points}.
+%$N \cdot (x, y, z) = N \cdot A$,
+%where $N$ is normal: $N = (B - A) \times (C - A)$.
+
+%\Topic{3D rotation} by ccw angle $\phi$ around axis $\mathbf{n}$:
+%$\mathbf{r}' =
+%   \mathbf{r} \cos\phi +
+%   \mathbf{n} (\mathbf{n} \cdot \mathbf{r}) (1 - \cos\phi) +
+%   (\mathbf{n} \times \mathbf{r}) \sin\phi$
+% http://mathworld.wolfram.com/RotationFormula.html
+% note: order of n and r in the last term is changed,
+% as we're rotating vector r, and not the coordinate system here
+ 
+%\Topic{Plane equation from 3 points}.
+%$N \cdot (x, y, z) = N \cdot A$,
+%where $N$ is normal: $N = (B - A) \times (C - A)$.
+ 
+ 
+% Combinatorics {{{
+\Section{Maths}
+
+\Topic{Cayley's Formula}. Given a degree sequence $d_1, d_2 \cdots, d_n$ for each labeled vertices, there exists $\frac{(n-2)!}{(d_1 - 1)!(d_2 - 1)! \cdots (d_n - 1)!}$ spanning trees. Summing this for every possible degree sequence gives $n^{n-2}$. \\
+
+\Topic{Kirchhoff's Theorem}. For a multigraph $G$ with no loops, define Laplacian matrix as $L = D - A$. $D$ is a diagonal matrix with $D_{i, i} = deg(i)$, and $A$ is an adjacency matrix. If you remove any row and column of $L$, the determinant gives a number of spanning trees.\\
+
+\Topic{Burnside's lemma / Polya enumeration theorem}. Let $G$ and $H$ be groups of permutations of a finite set $X$d. Let $c_m(g)$ denote the number of cycles of length $m$ in $g \in G$ when permuting $X$. The number of colorings of $X$ into n colors with exactly $r_i$ occurrences of the $i$-th color is the coefficient of $w_1^{r_1}\ldots w_n^{r_n}$ in the polynomial $P(w_1,\ldots ,w_n)=\frac{1}{|G|}\sum_{g\in G}\prod_{m \ge 1}(w_1^m + \ldots +w_n^m)^{c_m(g)}$ \\
+ 
+\Topic{Angular bisector} of angle $ABC$ is line $BD$, where $D = \frac{BA}{|BA|} + \frac{BC}{|BC|}$. \\
+Center of incircle of triangle $ABC$ is at the intersection of angular
+bisectors, and is $\frac{a}{a+b+c} A + \frac{b}{a+b+c} B + \frac{c}{a+b+c} C$,
+where $a$, $b$, $c$ are lengths of sides, opposite to vertices $A$, $B$, $C$.
+Radius $= \frac{2\Delta}{a+b+c}$.
+ 
+ 
+\Topic{Sums} \\
+ 
+$\left(m+1\right) * \sum_{k=0}^{n} k ^ m = \left(n+1\right)^{m+1} - \left(\sum_{r=2}^{m+1} \left({{m+1}\choose{r}}  \sum_{k=0}^{n} k ^ {m+1-r} \right) \right)$ \\ \vspace{3mm}
+ 
+$S_{n} = \sum_{k=1}^n [a + (k-1)d] r^{k-1} =   \frac{a - [a+(n-1)d]r^{n}}{1-r} + \frac{dr(1-r^{n-1})}{(1-r)^{2}}$ \\
+
+\Topic{Catalan Numbers}
+$C_{n} = \frac{1}{n+1}{{2n}\choose{n}}$. DP Recurrence : $C_{n+1} = \sum_{i=0}^{n}C_{i}C_{n-i}$ and $C_{0}=1$ .No. of balanced paranthesis. No. of paths to go from one end of matrix to another but only below main diagonal. Number of full binary trees with N+1 leaves. Number of non-isomorphic ordered trees with n vertices. Number of triangulations of polygon with N+2 sides. Number of ways to tile a stairstep shape of height n with n rectangles. The number of rooted binary trees with n internal nodes.  Number of standard Young tableaux whose diagram is a 2-by-n rectangle. i.e. the number of ways the numbers 1, 2, ..., 2n can be arranged in a 2-by-n rectangle so that each row and each column is increasing.
+ 
+\Topic{Pascal Triangle Properties:}\\
+${\sum_{i=1}^{n} {\binom {i}{j}} = {\binom {n+1}{j+1}}}
+,  {\sum_{i=0}^{n/2} {\binom {n-i}{i}} = F_{n+1}}\\
+{\sum_{j=0}^{k} {\binom {m}{j}}*{\binom {n-m}{k-j}} = {\binom {n}{k}}}
+, {\sum_{m=0}^{n} {\binom {m}{j}}*{\binom {n-m}{k-j}} = {\binom {n+1}{k+1}}}\\
+{\sum_{k=-a}^{a} {(-1)}^k {\binom {2a}{k+a}} = \frac{(3a)!}{(a!)^3}},  
+{\sum_{k=-a}^{a} {(-1)}^k {\binom {a+b}{a+k}}{\binom {b+c}{b+k}}{\binom {c+a}{c+k}} = \frac{(a+b+c)!}{(a!)(b!)(c!)}}$
+
+\Topic{Stirling numbers of $1^{st}$ kind}.
+$s_{n,k}$ is $(-1)^{n-k}$ times the number of permutations of $n$ elements with
+exactly $k$ permutation cycles.
+$|s_{n,k}| = |s_{n-1,k-1}| + (n-1) |s_{n-1,k}|$.
+ 
+\Topic{Stirling numbers of $2^{nd}$ kind}.
+$S_{n,k}$ is the number of ways to partition a set of $n$ elements into
+exactly $k$ non-empty subsets.
+$S_{n,k} = S_{n-1,k-1} + k S_{n-1,k}$.  
+$S_{n,1} = S_{n,n} = S_{0,0} = 1$.
+$S_{n,0} = S_{0,n} = 0$.\\
+$n^{k} = \sum_{i=0}^n \binom{n}{i} S_{k,i} * i!$
+Take binomial transform: $S_{n,k} = \sum_{i=0}^{k} {\frac {(-1)^{k-i} i^{n}} {i! * (k-i)!}}$
+This is polynomial multiplication.\\
+\Topic{Binomial Transform:}
+$a_{n} = {\sum_{i=0}^{n}} \binom {n}{i} b_{i}$\\
+$b_{n} = {\sum_{i=0}^{n}} \binom {n}{i} (-1)^{n-i} a_{i}$
+
+ 
+\Topic{Bell numbers}.
+$B_n$ is the number of partitions of $n$ elements.
+$B_0, \ldots = 1,1,2,5,15,52,203,\ldots$ \\
+$B_{n+1} = \sum_{k=0}^n {n \choose k} B_k = \sum_{k=1}^n S_{n,k}$.
+Bell triangle: $B_r=a_{r,1}=a_{r-1,r-1}$, $a_{r,c}=a_{r-1,c-1}+a_{r,c-1}$.
+%Bell triangle: 1, 1 2, 2 3 5, 5 7 10 15, 15 20 27 37 52, (last) ... (left + left above).
+ 
+% }}}
+ 
+\Topic{Linear diophantine equation}. $ax+by=c$.
+Let $d=\gcd(a,b)$. A solution exists iff $d|c$.
+If $(x_0,y_0)$ is any solution, then all solutions are given by
+$(x,y) = (x_0 + \frac{b}{d}t, y_0 - \frac{a}{d}t)$, $t \in {\mathbb Z}$.
+To find some solution $(x_0, y_0)$, use extended GCD to solve
+$ax_0 + by_0 = d = \gcd(a, b)$, and multiply its solutions by $\frac{c}{d}$.
+Linear diophantine equation in $n$ variables:
+$a_1 x_1 + \dots + a_n x_n = c$ has solutions iff $\gcd(a_1, \dots, a_n) | c$.
+To find some solution, let $b=\gcd(a_2, \dots, a_n)$,
+solve $a_1 x_1 + by = c$, and iterate with $a_2 x_2 + \dots = y$.
+Multiplicative inverse of $a$ modulo $m$:
+$x$ in $ax + my = 1$, or $a^{\phi(m)-1} \pmod{m}$.
+ 
+\Topic{Chinese Remainder Theorem}.
+System $x \equiv a_i \pmod{m_i}$ for $i=1,\dots,n$, with
+pairwise relatively-prime $m_i$ has a unique solution modulo $M = m_1 m_2 \dots m_n$:
+$x = a_1 b_1 \frac{M}{m_1} + \dots + a_n b_n \frac{M}{m_n} \pmod{M}$,
+where $b_i$ is modular inverse of $\frac{M}{m_i}$ modulo $m_i$.
+ 
+\Topic{Generalized CRT}.
+System $x \equiv a \pmod{m}$, $x \equiv b \pmod{n}$ has solutions
+iff $a \equiv b \pmod{g}$, where $g=\gcd(m,n)$.
+The solution is unique modulo $L=\frac{mn}{g}$, and equals:
+$x \equiv a + T(b-a) m/g \equiv b + S(a-b) n/g \pmod{L}$,
+where $S$ and $T$ are integer solutions of $mT + nS = \gcd(m,n)$.
+ 
+\Topic{Euler's phi function}.
+$\phi(n)=|\{m \in {\mathbb N}, m \le n, \gcd(m, n) = 1 \}|$. \\
+$\phi(mn) = \frac{\phi(m) \phi(n) \gcd(m,n)}{\phi(\gcd(m,n))}$. \quad
+$\phi(p^a) = p^{a-1} (p-1)$. \quad
+$\sum_{d|n} \phi(d) = \sum_{d|n} \phi(\frac{n}{d}) = n$.
+ 
+\Topic{Euler's theorem}. $a^{\phi(n)} \equiv 1\pmod{n}$, if $\gcd(a,n)=1$.
+ 
+\Topic{Wilson's theorem}. $p$ is prime iff $(p - 1)! \equiv -1 \pmod p$.
+ 
+\Topic{Mobius function}.
+$\mu(1) = 1$. $\mu(n) = 0$, if $n$ is not squarefree.
+$\mu(n) = (-1)^s$, if $n$ is the product of $s$ distinct primes.
+Let $f$, $F$ be functions on positive integers.
+If for all $n \in N$, $F(n)=\sum_{d|n} f(d)$, then $f(n) = \sum_{d|n} \mu(d) F(\frac{n}{d})$,
+and vice versa. \quad
+$\phi(n) = \sum_{d|n} \mu(d) \frac{n}{d}$.
+\quad $\sum_{d|n} \mu(d) = [n==1]. 
+$$sum\_divisors(\sigma(n)) = \sum_{d|n} d = \sum_{d|n} \phi(d) * num\_div(n/d)$. \\
+If $f$ is multiplicative, then $\sum_{d|n} \mu(d) f(d) = \prod_{p|n}(1-f(p))$,
+$\sum_{d|n} \mu(d)^2 f(d) = \prod_{p|n} (1+f(p))$.
+Let the problem be to find G=$\sum_{i=1}^n \sum_{j=i+1}^n $h(gcd(i,j)),here h(n) should be a multiplicative function.
+Re-write the equation like this:  G=$\sum_{g=1}^n$ h(g)*cnt[g], where cnt[g] is no. of pairs such that gcd(i,j)=g.
+Find function f(n) such that h(n)=$\sum_{d|n}$ f(d). this can be done using mobius inversion and sieve.
+G=$\sum_{d=1}^n$ h(d)*cnt2[d], where cnt2[d] is no. of pairs such that gcd(i,j) is a multiple of d.
+ 
+\Topic{Primitive roots}.  If the order of $g$ modulo $m$ (min $n>0$:
+$g^n \equiv 1 \pmod{m}$) is $\phi(m)$, then $g$ is called a primitive root.
+If $Z_m$ has a primitive root, then it has $\phi(\phi(m))$ distinct primitive
+roots. $Z_m$ has a primitive root iff $m$ is one of $2$, $4$,
+$p^k$, $2p^k$, where $p$ is an odd prime.
+If $Z_m$ has a primitive root $g$, then for all $a$ coprime to $m$,
+there exists unique integer $i=\text{ind}_g(a)$ modulo $\phi(m)$,
+such that $g^i \equiv a \pmod{m}$.
+$\text{ind}_g(a)$ has logarithm-like properties:
+$\text{ind}(1) = 0$, $\text{ind}(ab) = \text{ind}(a) + \text{ind}(b)$.
+If $p$ is prime and $a$ is not divisible by $p$, then congruence
+$x^n \equiv a \pmod{p}$ has $\gcd(n, p-1)$ solutions if
+$a^{(p-1)/\gcd(n,p-1)} \equiv 1 \pmod{p}$, and no solutions otherwise.
+(Proof sketch: let $g$ be a primitive root, and
+$g^i \equiv a \pmod{p}$, $g^u \equiv x \pmod{p}$.
+$x^n \equiv a \pmod{p}$ iff $g^{nu} \equiv g^i \pmod{p}$ iff $nu \equiv i \pmod{p}$.)
+ 
+\Topic{Postage stamps/McNuggets problem}.  Let $a$, $b$ be relatively-prime integers.
+There are exactly $\frac{1}{2}(a-1)(b-1)$ numbers \emph{not} of form $ax+by$ ($x,y \ge 0$),
+and the largest is $(a-1)(b-1)-1 = ab - a - b$.
+ 
+\Topic{Ballot Theorem}. If $A$ receives $p$ votes and $B$ receives $q$ votes with $p > q$ then probability that $A$ is strictly ahead of $B$ at all times is given by $\frac{p-q}{p+q}$. If ties allowed : $\frac{p+1-q}{p+1}$
+ 
+\Topic{Leibniz formula for Determinants} $det(A) = \sum_{\sigma \in S_{n}} sgn(\sigma) \prod_{i=1}^{n}a_{\sigma(i),i}$. where $sgn(\sigma)$ is $+1/-1$ based on even/odd parity of number of inversions of permutation $\sigma$.
+ 
+\Topic{2D Recurrence using FFT} For any 2D recurrence of the form $F_{n,p} = \sum_{i=0}^{k}a_{i}(n).F_{n-1,p-i}$. We can write it as follows & use polynomial multiplication to compute the values of recurrence fast.
+\[
+\sum_{i=0}^{kn}F_{n,i}.x^{i} = \prod_{i=1}^{n} \sum_{j=0}^{k}a_{j}(i).x^{j}
+\]
+\Topic{Trick for 2D FFT}$\frac{P(1)+P(\delta)+...+P(\delta^{n-1})}{n}$ is sum of all indexes of polynomial P divisible by n where $\delta$ = n'th root of unity.
+ 
+\Topic{Fermat's two-squares theorem}.  Odd prime $p$ can be represented
+as a sum of two squares iff $p \equiv 1 {\pmod 4}$.
+A product of two sums of two squares is a sum of two squares.
+Thus, $n$ is a sum of two squares iff every prime of
+form $p=4k+3$ occurs an even number of times in $n$'s factorization.
+ 
+\Topic{Counting Primes Fast}   To count number of primes lesser than big n. Use following recurrence. \\ dp[n][j] = dp[$n$][$j+1$] + dp[$n/p_{j}$][j]   where dp[$i$][$j$] stores count of numbers lesser than equal to $i$ having all prime divisors greater than equal to $p_{j}$. Precompute this for all i less than some small k and for others use the recurrence to compute in small time.
+% \vspace{-7mm}
+\Section{Graphs}
+% \vspace{-3mm}
+\Topic{Mirsky's Theorem} Max length chain is equal to min partitioning into antichains. Max chain is height of poset.
+% \vspace{-3mm}
+ 
+\Topic{Dilworth's Theorem} Min partition into chains is equal to max length antichain. From poset create bipartite graph. Any edge from $v_{i}$ - $v_{j}$ implies  $LV_{i}$ - $RV_{j}$. Let A be the set of vertices such that neither $LV_{i}$ nor $RV_{i}$ are in vertex cover. A is an antichain of size n-max matching. To get min partition into chains, take a vertex from left side, keep taking vertices till a matching exist. Consider this as a chain. Its size is n - max matching.
+% \vspace{-3mm}
+ 
+\Topic{Konig's Thoerem} In any bipartite graph, the number of edges in a maximum matching equals the number of vertices in a minimum vertex cover.
+Consider a bipartite graph where the vertices are partitioned into left ($L$) and right ($R$) sets. Suppose there is a maximum matching which partitions the edges into those used in the matching ($E_m$) and those not ($E_0$). Let $T$ consist of all unmatched vertices from L, as well as all vertices reachable from those by going left-to-right along edges from $E_0$ and right-to-left along edges from $E_m$. This essentially means that for each unmatched vertex in L, we add into T all vertices that occur in a path alternating between edges from $E_0$ and $E_m$.
+Then $(L \setminus T) \cup (R \cap T)$ is a minimum vertex cover. Intuitively, vertices in $T$ are added if they are in $R$ and subtracted if they are in $L$ to obtain the minimum vertex cover.
+% \vspace{-3mm}
+ 
+\Topic{Matrix-tree theorem} Let matrix $T = [t_{ij}]$, where $t_{ij}$ is negative of the number of
+multiedges between $i$ and $j$, for $i \ne j$, and $t_{ii} = \mbox{deg}_i$.
+Number of spanning trees of a graph is equal to the determinant of
+a matrix obtained by deleting any $k$-th row and $k$-th column from $T$.
+If $G$ is a multigraph and $e$ is an edge of $G$, then the number $\tau(G)$ of
+spanning trees of $G$ satisfies recurrence $\tau(G) = \tau(G-e) + \tau(G/e)$,
+when $G-e$ is the multigraph obtained by deleting $e$, and $G/e$ is
+the contraction of $G$ by $e$ (multiple edges arising from the contraction
+are preserved.)
+
+\Topic{Cycle Spaces} The (binary) cycle space of an undirected graph is the set of its Eulerian subgraphs.
+This set of subgraphs can be described algebraically as a vector space over the two-element finite field.
+One way of constructing a cycle basis is to form a spanning forest of the graph, and then for each edge $e$ that does not belong to the forest, form a cycle C  $C_{e}$ consisting of $e$ together with the path in the forest connecting the endpoints of $e$. The set of cycles $C_{e}$ formed in this way are linearly independent (each one contains an edge $e$ that does not belong to any of the other cycles) and has the correct size $m − n + c$ to be a basis, so it necessarily is a basis. This is fundamental cycle basis.\\
+\Topic{Cut Spaces} The family of all cut sets of an undirected graph is known as the cut space of the graph. It forms a vector space over the two-element finite field of arithmetic modulo two, with the symmetric difference of two cut sets as the vector addition operation, and is the orthogonal complement of the cycle space.      
+To compute the basis vector for the cut space, consider any spanning tree of the graph. For every edge $e$ in the spanning tree, remove the edge and consider the cut formed. Thus dimension of the basis vector for cut space is n-1. \\  
+\Topic{Miscellaneous}
+
+\begin{itemize}
+\item Number of perfect matchings of a bipartite graph is equal to the permanent of the adjacency matrix obtained. To check the parity of the number of perfect matchings, we can evaluate the permanent of the matrix in $Z_{2}$ which can be done easily coz in $Z_{2}$, Perm(A) = Deter(A).
+\item \textbf{Tutte Matrix}. For a simple undirected graph $G$, Let $M$ be a matrix with entries $A_{i, j} = 0$ if $(i, j) \notin E$ and $A_{i, j} = -A_{j, i} = X$ if $(i, j) \in E$. $X$ could be any random value. If the determinants are non-zero, then a perfect matching exists, while other direction might not hold for very small probability.\\
+\end{itemize}
+\Topic{Fast Walsh–Hadamard transform}
+ Calculate $c_{k}x_{k}$ = $\sum_{i \oplus j = k}a_{i}*b_{j}$. \\
+p[i+j]=u+v, p[i+j+len]=u-v; INVERSE : p[i+j]=u+v, p[i+j+len]=u-v; DIVIDE BY SIZE OF POLY\\
+\Topic{Fast Multiplication using AND Operator}
+ Calculate $c_{k}x_{k}$ = $\sum_{i \& j = k}a_{i}*b_{j}$. \\
+p[i+j]=v, p[i+j+len]=u+v; INVERSE : p[i+j]=-u+v, p[i+j+len]=u; \\
+\Topic{Fast Multiplication using OR Operator}
+ Calculate $c_{k}x_{k}$ = $\sum_{i | j = k}a_{i}*b_{j}$. \\
+p[i+j]=u+v, p[i+j+len]=u; INVERSE : p[i+j]=v, p[i+j+len]=u-v;\\ 
+\Topic{Mod Inverse 1 to  n mod m} $\text{inv}[i] = - \left\lfloor \frac{m}{i} \right\rfloor \cdot \text{inv}[m \bmod i] \bmod m$
+\\
+\Topic{Zeta Transformation} \\
+- Disjoint Subset Convolution = \\
+$ \sum_{c=0}^{N} \sum_{a=0}^{c} p_{c} CONV(p_{a}f * p_{c-a}g) $\\
+- To solve problem of type is it possible to divide a set into K sets, use the following dp[i][s] = 1 if it's possible to divide s into i sets else 0. Then find suitable relation between dp[i+1][s] and dp[i][.] \\
+- $ f[s] = \sum_{s1 U .. = s}{} a(s1) * b(s2) ... :: f = meu(zeta(a).*zeta(b).*.....) $ \\ - \# of perfect matching in a bipartile graph $ = \sum_{s \subseteq N} (-1)^{|N-s|} \prod_{i=1}^{N} \sum_{j \epsilon s} [ij \epsilon E]$ \\
+- \# of perfect matching in a general graph $ = \sum_{s\subseteq N} (-1)^{|N-s|} \binom{E[s]}{N/2}$ where $E[s] =$ # of edges that have end points in S. \\
+- to calcualte $f[s] = \sum_{s \subseteq s1} g[s1] $ use 
+$ f_{i+1}[s] =$ if $(i+1)^{th}$ bit is 1 $f_{i}[s]$ else $f_{i}[s] + f_{i}[s+2^{i}] $ \\
+- to calculate $V = \sum_{s1\cap s2 = \phi} f[s1]*g[s2]$ use $V=meu(supertsetsum(f) .* supersetsum(g))$ then $ans = V[Complete Set]$ \\ 
+\Topic{Turan's Theorem} A graph without $K_{r+1}$ and N verticies can have atmax $\lfloor \frac{N^{2}}{2} * (1 - \frac{1}{r}) \rfloor$ edges. \\
+\Topic{Brook's Theorem} If a graph is not a complete graph or an odd cycle then it can be coloured with max degree \# of colours. \\
+\Topic{Correlation} $f[n]=\sum_{}{} h[n+x]*g[x]$ \\
+$temp=convolution(h,reverse(g))$ then $f[n]=temp[n+len(g)-1]$ \\
+- to find number of occurrences of string B in A where B can have '?' characters do : replace char c with $e^{\frac{2\pi i * (c -'a')}{26}}$ in A and replace char c with $e^{-\frac{2\pi i * (c -'a')}{26}}$, '?' with 0 in B. B occurs at i iff $correlation(A,B)[i] = |\# of B[i]'s \neq ?| $ \\
+\Topic{Lagrange's Formula} For any set of n points such that all $x_{k}$ are distinct, there is unique polynomial A(n) of degree $\le$ n-1. $A(x) = \sum_{k=0}^{n-1} y_{k} \frac{\prod_{j\neq k}(x-_{j})}{\prod_{j\neq k}(x_{k}-x_{j})}$\\
+\Topic{Pick's Theorem} If all points of polygon are lattice points then $Area = \text{\# of integer points inside polygon} + \frac{\text{\# of integer points on boundary}}{2} -1$ \\
+\Topic{Triangle} End Points (A,B,C) and sides (a,b,c), s=(a+b+c)/2\\
+$Inradius = \sqrt{s(s-a)(s-b)(s-c)}/s$  $Incentre = \frac{aA+bB+cC}{a+b+c}$ \\
+\Topic{Power Series Inverse} $R_{2n} = 2R_{n} - R_{n}^{2}F$ 
+  \Topic{Sqrt} $S_{2n}=(S_{n}+FS_{n}^{-1})/2$
+
