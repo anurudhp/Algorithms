@@ -1,5 +1,5 @@
 struct Dinic { using FT = int;
-  static const FT INF = 1 << 30;
+  static const FT INF = 1 << 30; // CHOSE CAREFULLY!
   struct Edge { int v, u; FT cap, flow = 0;
     Edge(int v, int u, FT cap) : v(v), u(u), cap(cap) {}
   };
@@ -11,14 +11,14 @@ struct Dinic { using FT = int;
     edges.EB(u, v, 0);   adj[u].PB(m); m++;
   }
   bool bfs() { fill(ALL(level), -1); level[src] = 0; 
-    queue<int> q; q.push(src);
-    while (!q.empty()) {
-      int v = q.front(); q.pop();
+    VI q(n+10); int qh = 0, qt = -1; q[++qt] = src;
+    while (qh <= qt) { // QUEUE be careful
+      int v = q[qh++]; // QUEUE be careful
       for (int id : adj[v]) {
         if (edges[id].cap - edges[id].flow < LIM) continue;
         if (level[edges[id].u] != -1) continue;
         level[edges[id].u] = level[v] + 1;
-        q.push(edges[id].u);
+        q[++qt] = edges[id].u; // QUEUE be careful
       }
     } return level[dest] != -1;
   }
@@ -35,7 +35,7 @@ struct Dinic { using FT = int;
     }} return 0;
   }
   FT max_flow(int s, int t) { src = s, dest = t; FT f = 0;
-    // for (LIM = INF; LIM > 0; LIM >>= 1) // SCALING
+    // for (LIM = INF >> 1; LIM > 0; LIM >>= 1) // SCALING
       while (bfs()) {  fill(ALL(ptr), 0);
         while (FT pushed = dfs(s, INF)) f += pushed;
       } 
