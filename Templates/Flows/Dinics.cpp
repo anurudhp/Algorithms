@@ -1,8 +1,8 @@
 struct Dinic { using FT = int;
   static const FT INF = 1 << 30; // CHOSE CAREFULLY!
-  struct Edge { int v, u; FT cap, flow = 0;
-    Edge(int v, int u, FT cap) : v(v), u(u), cap(cap) {}
-  };
+  struct Edge { int from, to; FT cap, flow = 0;
+    Edge(int from, int to, FT cap) : from(from), to(to), cap(cap) {}
+  }; 
   int n, m = 0, src, dest; FT LIM = 1;
   vector<Edge> edges; vector<VI> adj; VI level, ptr; 
   Dinic(int n) : n(n), adj(n), level(n), ptr(n) {}
@@ -16,9 +16,9 @@ struct Dinic { using FT = int;
       int v = q[qh++]; // QUEUE be careful
       for (int id : adj[v]) {
         if (edges[id].cap - edges[id].flow < LIM) continue;
-        if (level[edges[id].u] != -1) continue;
-        level[edges[id].u] = level[v] + 1;
-        q[++qt] = edges[id].u; // QUEUE be careful
+        if (level[edges[id].to] != -1) continue;
+        level[edges[id].to] = level[v] + 1;
+        q[++qt] = edges[id].to; // QUEUE be careful
       }
     } return level[dest] != -1;
   }
@@ -26,7 +26,7 @@ struct Dinic { using FT = int;
     if (pushed == 0) return 0;
     if (v == dest) return pushed;
     for (int& cid = ptr[v]; cid < SZ(adj[v]); cid++) {
-      int id = adj[v][cid]; int u = edges[id].u;
+      int id = adj[v][cid]; int u = edges[id].to;
       if (level[v] + 1 != level[u]) continue;
       FT tr = dfs(u, min(pushed, edges[id].cap - edges[id].flow));
       if (tr > 0) {

@@ -8,3 +8,4 @@ test.cpp
 *.pdf
 node_modules
 *.html
+*.py
