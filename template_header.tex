@@ -5,7 +5,12 @@
 \usepackage{listings}
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{amsmath}
-\usepackage{verbatim}
+
+% FONT
+% \usepackage{verbatim}
+\usepackage{inconsolata}
+% \usepackage{courier}
+
 \usepackage{hyperref}
 \usepackage{color}
 \usepackage{geometry}
@@ -53,12 +58,16 @@
   basicstyle={\small\ttfamily},
   numbers=none,
   numberstyle=\tiny\color{gray},
-  keywordstyle=\color{blue},
-  commentstyle=\color{dkgreen},
+  % keywordstyle=\color{blue},
+  keywordstyle=\bfseries,
+  commentstyle=\color{gray},
   stringstyle=\color{mauve},
   breaklines=true,
   breakatwhitespace=true
-  tabsize=2
+  tabsize=2,
+}
+\lstset{emph={LL, VI, PII, DBL, FOR, REP, SZ, SET, ALL, EB, PB, MP, ST, ND},
+  emphstyle=\bfseries
 }
 
 \setlength{\columnsep}{0.5in}
@@ -88,16 +97,20 @@
 % \setlength{\parskip}{-5mm}
 %%%%% </CUSTOM> %%%%%%%%%%
 
-\begin{document}
 \title{tesla\_protocol}
 \author{IIIT Hyderabad}
 \date{}
+\begin{document}
+\pagenumbering{gobble}
+\newgeometry{verbose,landscape,${paper},tmargin=1cm,bmargin=2cm,lmargin=1cm,rmargin=1cm}
 \maketitle
 \begin{multicols}{3}
-${image}
 \tableofcontents
 \end{multicols}
+\restoregeometry
 \pagebreak
+\pagenumbering{arabic}
+\setcounter{page}{1}
 \begin{multicols}{2}
 \lstloadlanguages{C++,Java}
 
