@@ -1,6 +1,5 @@
 \Topic{Useful NTT mods and generators}
 \begin{itemize}
-\itemsep -0.5em
 \item $998244352 = 1 + 2^{23} \times 7 \times 17$, $g = 3$
 \item $985661441 = 1 + 2^{22} \times 5 \times 47$, $g = 3$
 \item $1012924417 = 1 + 2^{21} \times 483$, $g = 5$
@@ -8,7 +7,6 @@
 
 \Topic{Fast Walsh–Hadamard transform} (Don't forget to normalize)
 \begin{itemize}
-  \itemsep -0.5em
   \item \textbf{XOR:} $T = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} = T^{-1}$
   \item \textbf{AND:} $T = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}, T^{-1} = \begin{bmatrix} 1 & -1 \\ 0 & 1 \end{bmatrix}$
   \item \textbf{OR:} $T = \begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix}, T^{-1} = \begin{bmatrix} 1 & 0 \\ -1 & 1 \end{bmatrix}$
