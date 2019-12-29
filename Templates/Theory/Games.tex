@@ -1,4 +1,4 @@
-\Topic{Green HackenBush Game} If two players are playing a game where move allowed is to cut an edge of a (rooted) tree then for each node,set value of the node to xor of (1 + value of it's child) for all children of the node in the tree. For leaves, value is 0. See value of root to determine the winner. For a (rooted) graph, where each player can remove an edge from the component connected to the root and one unable to remove loses. Create bridge-tree and do same as tree except val[node] = originalVal[node] $\oplus$ (numEdges[node] \& 1)
+\Topic{Green HackenBush Game} For a (rooted) graph, where each player can remove an edge from the component connected to the root and one unable to remove loses. Create bridge-tree and do same as tree except val[node] = originalVal[node] $\oplus$ (numEdges[node] \& 1)
 
 \Topic{Mis\`{e}re Nim} A position with pile sizes $a_1, a_2, \dots, a_n \ge 1$, not all equal to $1$, is losing iff $a_1 \oplus a_2 \oplus \dots \oplus a_n = 0$ (like in normal nim.)\\
 A position with $n$ piles of size $1$ is losing iff $n$ is \emph{odd}.
@@ -6,3 +6,7 @@ A position with $n$ piles of size $1$ is losing iff $n$ is \emph{odd}.
 \Topic{StairCase Nim} Stair Case from \{1 \ldots N\}. Ans = xor of $a_{even}$ 
 
 \Topic{k-Nim}. One Player can reduce the size of \{1 \ldots k\} piles. Starting position is losing iff for all $j \in \{0 \ldots \log(max(a_i))\} \sum_{i=1}^{N} a_{i}\&2^{j} = 0 \bmod k + 1$
+
+\Topic{Lasker's Nim} Players may alternatively split a pile into two new non-empty piles. $g(4k + 1) = 2k + 1, g(4k + 2) = 4k + 2, g(4k + 3) = 4k + 4, g(4k + 4) = 4k + 3$
+
+% If two players are playing a game where move allowed is to cut an edge of a (rooted) tree then for each node,set value of the node to xor of (1 + value of it's child) for all children of the node in the tree. For leaves, value is 0. See value of root to determine the winner. 

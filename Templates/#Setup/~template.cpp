@@ -19,3 +19,8 @@ mt19937 rng(SEED); /*or*/ random_device rd; mt19937 rng(rd());
 uniform_int_distribution<> dis(MIN, MAX);// usage: dis(rng)
 struct chash {int operator()(int x) const {return x^SEED;}};
 gp_hash_table<int,int,chash>m;//use cc if very less updates
+/*** FAST IO ***/
+inline int scan(){ bool y=0; int x=0; char c=getchar_unlocked();
+while(c<'0'||c>'9'){ if(c=='-')y=1; c=getchar_unlocked();} 
+while(c>='0'&&c<='9'){x=(x<<1)+(x<<3)+c-'0';c=getchar_unlocked();}
+return y?-x:x; }
