@@ -35,7 +35,7 @@ void run(int n) {
 void build_tree(int n) {
   run(n);
   VI temp;
-  SET(extra, -1);
+  SET(extra, 0);
   FOR(i, 1, n + 1) {
     temp.clear();
     for(int e: g[i]) {
@@ -44,13 +44,13 @@ void build_tree(int n) {
     sort(ALL(temp));
     temp.erase(unique(ALL(temp)), temp.end());
     if (temp.empty()) {
-      compNo[i] = C + i, extra[C + i] = 0;
+      compNo[i] = C + i, extra[C + i] = 1;
     } else if (SZ(temp) == 1) { // belongs to only 1 component.
       compNo[i] = temp[0], extra[temp[0]] = 1;
     } else { // cutVertex
-      compNo[i] = C + i, extra[C + i] = 0;
+      compNo[i] = C + i, extra[C + i] = 1;
       for(int u: temp) {
-        extra[u] = 0;
+        extra[u] = 1;
         cutVtree[C + i].PB(u);
         cutVtree[u].PB(C + i);
       }
