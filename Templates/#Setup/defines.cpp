@@ -7,8 +7,5 @@ using VVI = vector<VI>;         using VVD = vector<VD>;
 #define SZ(a) ((int)((a).size()))
 #define ALL(x) (x).begin(), (x).end()
 #define SET(a,v) memset((a), (v), sizeof(a))
-#define EB emplace_back
-#define PB push_back
-#define MP make_pair
-#define ST first
-#define ND second
+#define EB emplace_back #define PB push_back
+#define MP make_pair  #define ST first  #define ND second
