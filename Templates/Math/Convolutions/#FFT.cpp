@@ -1,6 +1,7 @@
 // using CD = complex<DBL>; // SLOW
+// using Poly = vector<CD>; 
 const DBL PI = acos(-1);
-void fft(vector<CD> & a, bool invert) {
+void fft(Poly& a, bool invert) {
   const int n = a.size(); // HAS TO BE POWER OF 2
   for (int i = 1, j = 0; i < n; i++) {
     int bit = n >> 1;
@@ -20,3 +21,4 @@ void fft(vector<CD> & a, bool invert) {
     }
   } if (invert) { for (CD& x: a) x = x / n; }
 }
+void multiply(const Poly& a, const Poly& b, Poly& prod);

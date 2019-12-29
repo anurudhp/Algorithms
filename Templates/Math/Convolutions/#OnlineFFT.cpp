@@ -1,13 +1,19 @@
-void convolve(int al,int ar,int bl,int br) {//poly a from al to ar
-  int n=1,sz=ar-al+br-bl+1;//poly b from bl to br
-  while(n<sz) n<<=1; vector<fft::cd> a1(n),b1(n);
-  FOR(i,al,ar+1) a1[i-al].r=/*a[i]*/; //dynamic poly
-  FOR(i,bl,br+1) b1[i-bl].r=/*b[i]*/; //fixed poly
-  //-> make fft/ntt call -> a1[i]=a1[i]*b1[i] -> inverse of a1
-  FOR(i,0,sz) {int nxtind=al+bl+i;if(nxtind<=/*maxbound*/) c[nxtind]+=a1[i].r;}
-} void solve() {
-  // in the calling function :->multiply a(0) with b(1),b(2)
-  FOR(i,1,/*maxbound*/) {//->multiply a(i) with b(1) and b(2), c is conv of a and b
-  //c[i+1]+=a[i]*b[1],c[i+2]+=a[i]*b[2]
-  for(int pw=2;i%pw==0 && pw+1<=/*bound*/;pw*=2) {//convolving blocks of size pw
-    convolve(i-pw,i-1,pw+1,min(pw*2,/*bound*/)); } } }
+// 1-indexed sequences
+// given: B[1...m] (=> padding `B[i] = 0` for `i > m`)
+// compute: A[i] = \sum{j = 1...i-1} A[j] * B[i-j]
+void online(const Poly& B, CD a1, int n, Poly& A) {
+  const int m = SZ(B) - 1;
+  A.assign(n + 1, 0); A[1] = a1;
+  auto bst = B.begin(), ast = A.begin();
+  FOR(i, 1, n) { A[i + 1] += A[i] * B[1];
+    if (i + 2 <= n) A[i + 2] += A[i] * B[2];
+    for (int pw = 2; i % pw == 0 && pw + 1 <= m; pw <<= 1) {
+      Poly blockA(ast + i - pw, ast + i);
+      Poly blockB(bst + pw + 1, bst + min(pw * 2, m) + 1);
+      Poly prod; multiply(blockA, blockB, prod);
+      FOR(j, 0, SZ(prod)) {
+        if (i + 1 + j <= n) A[i + 1 + j] += prod[j];
+      }
+    }
+  }
+}
