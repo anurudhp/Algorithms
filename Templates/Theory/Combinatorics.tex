@@ -1,4 +1,5 @@
 \Topic{Burnside's lemma/Polya enumeration theorem}. Let $G$ and $H$ be groups of permutations of a finite set $X$. Let $c_m(g)$ denote the number of cycles of length $m$ in $g \in G$ when permuting $X$. The number of colorings of $X$ into n colors with exactly $r_i$ occurrences of the $i$-th color is the coefficient of $w_1^{r_1}\ldots w_n^{r_n}$ in the polynomial $P(w_1,\ldots ,w_n)$ is $$\frac{1}{|G|}\sum_{g\in G}\prod_{m \ge 1}(w_1^m + \ldots +w_n^m)^{c_m(g)}$$
+With colour permutation: $$P(w_1,\ldots ,w_n)=\frac{1}{\left|H\right|}\sum_{h\in H}\frac{1}{\left|G\right|}\sum_{g\in G}\prod_{m\ge 1}(\sum_{h^m(b)=b}(w_b^m))^{c_m(g)}$$
 
 \Topic{Standard Summations:}
 $$\left(m+1\right) * \sum_{k=0}^{n} k ^ m = \left(n+1\right)^{m+1} - \left(\sum_{r=2}^{m+1} \left({{m+1}\choose{r}}  \sum_{k=0}^{n} k ^ {m+1-r} \right) \right)$$
