@@ -1,4 +1,5 @@
 #define vec Vect<T>
+#define cvec const vec&
 template<typename T> struct Vect { T x, y;
   vec(): x(0), y(0) {}
   vec(T a, T b): x(a), y(b) {};
@@ -27,5 +28,11 @@ template<typename T> struct Line {
     T alpha = ((o.a - a) / (v.cross(o.v))).cross(o.v);
     p = a + v * alpha; return true;
   }
-};
+}; // solve: ax + by = c; p = (x, y)
+bool solve_lineq(cvec a, cvec b, cvec c, vec& p) {
+  if (EQ(a.cross(b), 0)) return false;
+  p.x = c.cross(b) / a.cross(b); p.y = c.cross(a) / b.cross(a);
+  return true;
+}
 #undef vec
+#undef cvec

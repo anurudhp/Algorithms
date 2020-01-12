@@ -1,7 +1,7 @@
 // using Vec = Vect<double>; // or any other type
-bool CCW(Vec a, Vec b, Vec c) { return (b-a).cross(c-b) > 0; }
-bool CW(Vec a, Vec b, Vec c) { return (b-a).cross(c-b) < 0; }
-bool cmp(const Vec& a, const Vec& b) { return a.x - b.x < 0; }
+bool CCW(Vec a, Vec b, Vec c) { return LESS(0, (b-a).cross(c-b)); }
+bool CW(Vec a, Vec b, Vec c) { return LESS((b-a).cross(c-b), 0); }
+bool cmp(const Vec& a, const Vec& b) { return LESS(a.x - b.x, 0); }
 void ConvexHull(vector<Vec> &pts) {
   sort(ALL(pts), cmp); vector<Vec> up, dn;
   for (auto& p: pts) {
