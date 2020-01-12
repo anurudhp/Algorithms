@@ -16,7 +16,7 @@ void build_suffix_array(const string &s) { const int n = SZ(s);
   }
 }
 
-int lcp[MAXN], inv[MAXN];
+int kasai[MAXN], inv[MAXN];
 void build_kasai(const string &s) { const int n = SZ(s);
   int k = 0;
   REP(i, n) inv[sa[i]] = i;
@@ -25,7 +25,7 @@ void build_kasai(const string &s) { const int n = SZ(s);
     if (inv[i] == n - 1) { k = 0; continue; }
     const int j = sa[inv[i] + 1];
     while (i+k < n && j+k < n && s[i+k] == s[j+k]) k++;
-    lcp[inv[i]] = k--;
+    kasai[inv[i]] = k--;
   }
 }
 
@@ -35,7 +35,7 @@ void build_msb() { int mx = -1;
 }
 void build_LCP_sparse(const string& s) { const int n = SZ(s);
   REP(i,n-1) { //Build the LCP array in O(NlogN)
-    int ret = lcp[i];
+    int ret = kasai[i];
     if (ret >= dollar[sa[i]]-sa[i]) ret=dollar[sa[i]]-sa[i];
     LCP[0][i] = ret; //LCP[i] shouldnt exceed dollar[SA[i]]
   } // dollar[i] : index of dollar to the right of i.
