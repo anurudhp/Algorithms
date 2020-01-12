@@ -1,12 +1,15 @@
-- Geometry **
-  - 2D
-  - 3D
-- Lagrange Interpolation
-- Walsh-Hadamard (xor, and, or)
-- Strings - update etc.
+TODO
+====
+
 
 DONE
 ====
+- Geometry **
+  - 2D
+  - 3D
+- Strings - update etc.
+- Walsh-Hadamard (xor, and, or)
+- Lagrange Interpolation
 - NTT
 - Stoer Wagner
 - Hungarian
