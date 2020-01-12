@@ -29,11 +29,24 @@
 % $temp=convolution(h,reverse(g))$ then $f[n]=temp[n+len(g)-1]$ \\
 % - to find number of occurrences of string B in A where B can have '?' characters do : replace char c with $e^{\frac{2\pi i * (c -'a')}{26}}$ in A and replace char c with $e^{-\frac{2\pi i * (c -'a')}{26}}$, '?' with 0 in B. B occurs at i iff $correlation(A,B)[i] = |\# of B[i]'s \neq ?| $ \\
 
-\Topic{Lagrange's Formula} For any set of $n$ points such that all $x_{k}$ are distinct, there is unique polynomial $A(n)$ of degree $\le n - 1$. $$A(x) = \sum_{k=0}^{n-1} y_{k} \frac{\prod_{j\neq k}(x-x_{j})}{\prod_{j\neq k}(x_{k}-x_{j})}$$
- 
 \Topic{2D Recurrence using FFT} For any 2D recurrence of the form $F_{n,p} = \sum_{i=0}^{k}a_{i}(n).F_{n-1,p-i}$. We can write it as follows:
 $$\sum_{i=0}^{kn}F_{n,i}.x^{i} = \prod_{i=1}^{n} \sum_{j=0}^{k}a_{j}(i).x^{j}$$
 
 \Topic{Trick for 2D FFT} $\frac{P(1)+P(\delta)+...+P(\delta^{n-1})}{n}$ is sum of all indexes of polynomial $P$ divisible by $n$ where $\delta = n^{th}$ root of unity.
 
 \Topic{Leibniz formula for Determinants} $$det(A) = \sum_{\sigma \in S_{n}} \epsilon(\sigma) \prod_{i=1}^{n}a_{\sigma(i),i}$$ where $\epsilon$ is the levi-civita (1 for even, -1 for odd permutations)
+
+\Topic{Lagrange Interpolation} For a polynomial of degree n, given $n+1$ distinct points $(x_i, y_i) \;\; \forall i \in [0, n]$
+$$ y(x) = \sum_{i=0}^{n} y_i \prod_{j \ne i} \frac{x - x_j}{x_i - x_j} $$
+
+\Topic{Functions of polynomials} To find the root of a functional $F(Q)$: Start with $Q_0 = c$, the correct constant term of the solution $P(x)$, and iterate. (each iteration doubles the number of terms)
+$$ Q_{k+1} = Q_k - \frac{F(Q_k)}{F'(Q_k)} $$
+
+\begin{itemize}
+  \item Inverse: $F(Q) = QP - 1$, $Q_{k+1} = Q_k(2 - PQ_k)$
+  \item Logarithm: $(\ln P(x))' = \frac{P'(x)}{P(x)}$, then integrate.
+  \item Exponent: $F(Q) = ln(Q) - P$, $Q_{k+1} = Q_k(1 + P - ln Q_k)$
+  \item $k$-th power: $P^k(x) = \exp[k \ln P(x)]$.
+  Only works when $P(0) = 1$. Otherwise if $P(x) = \alpha x^t T(x)$ where $T(0) = 1$, then \\
+  $P^k(x) = \alpha^k x^{kt} \exp[k \ln T(x)]$. (Note: also works for fractional k)
+\end{itemize}
