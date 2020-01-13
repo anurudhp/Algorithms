@@ -1,7 +1,6 @@
 const int mod = 998244353, root_pw = 1 << 20;
 const int root = 973800541, root_1 = 595374802;
-void NTT(vector<int> & a, bool invert = false) {
-  const int n = a.size(); // HAS TO BE A POWER OF 2
+void NTT(VI& a, bool invert) { const int n = SZ(a);
   for (int i = 1, j = 0; i < n; i++) {
     int bit = n >> 1;
     for (; j & bit; bit >>= 1) { j ^= bit; }

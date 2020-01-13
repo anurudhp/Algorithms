@@ -33,6 +33,12 @@ bool solve_lineq(cvec a, cvec b, cvec c, vec& p) {
   if (EQ(a.cross(b), 0)) return false;
   p.x = c.cross(b) / a.cross(b); p.y = c.cross(a) / b.cross(a);
   return true;
+} // simple poly (not necessarily convex)
+DBL area(const vector<vec>& poly) { DBL res = 0;
+  FOR(i, 0, SZ(poly)) { 
+    vec p = i ? poly[i - 1] : poly.back(), q = poly[i];
+    res += (p.x - q.x) * (p.y + q.y);
+  } return fabs(res) / 2.0;
 }
 #undef vec
 #undef cvec

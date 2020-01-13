@@ -2,11 +2,11 @@
 
 \Topic{Dilworth's Theorem} Min partition into chains is equal to max length antichain. From poset create bipartite graph. Any edge from $v_{i}$ - $v_{j}$ implies  $LV_{i}$ - $RV_{j}$. Let A be the set of vertices such that neither $LV_{i}$ nor $RV_{i}$ are in vertex cover. A is an antichain of size n-max matching. To get min partition into chains, take a vertex from left side, keep taking vertices till a matching exist. Consider this as a chain. Its size is n - max matching.
 
-\Topic{Konig's Thoerem} In any bipartite graph, the number of edges in a maximum matching equals the number of vertices in a minimum vertex cover.
+\Topic{Konig's Theorem} In any bipartite graph, the number of edges in a maximum matching equals the number of vertices in a minimum vertex cover.
 Consider a bipartite graph where the vertices are partitioned into left ($L$) and right ($R$) sets. Suppose there is a maximum matching which partitions the edges into those used in the matching ($E_m$) and those not ($E_0$). Let $T$ consist of all unmatched vertices from L, as well as all vertices reachable from those by going left-to-right along edges from $E_0$ and right-to-left along edges from $E_m$. This essentially means that for each unmatched vertex in L, we add into T all vertices that occur in a path alternating between edges from $E_0$ and $E_m$.
 Then $(L \setminus T) \cup (R \cap T)$ is a minimum vertex cover. Intuitively, vertices in $T$ are added if they are in $R$ and subtracted if they are in $L$ to obtain the minimum vertex cover.
 
-\Topic{Matrix-tree theorem} Let matrix $T = [t_{ij}]$, where $t_{ij}$ is negative of the number of
+\Topic{Matrix-tree Theorem} Let matrix $T = [t_{ij}]$, where $t_{ij}$ is negative of the number of
 multiedges between $i$ and $j$, for $i \ne j$, and $t_{ii} = \mbox{deg}_i$.
 Number of spanning trees of a graph is equal to the determinant of
 a matrix obtained by deleting any $k$-th row and $k$-th column from $T$.

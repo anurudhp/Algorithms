@@ -24,7 +24,6 @@ void hld(int u, int par, int headno, int edgeval) {//remove edgeval if values ar
     hld(v.first, u, v.first, v.second);
   }
 }
-
 int queryhld(int a, int b) {
   int ans = null_val;
   while(head[a] != head[b]) {

@@ -15,7 +15,6 @@ void build_suffix_array(const string &s) { const int n = SZ(s);
     REP(i, n) if (fast[i] != -1) sa[(cnt[fast[i]])++] = tmp[i];
   }
 }
-
 int kasai[MAXN], inv[MAXN];
 void build_kasai(const string &s) { const int n = SZ(s);
   int k = 0;
@@ -28,7 +27,6 @@ void build_kasai(const string &s) { const int n = SZ(s);
     kasai[inv[i]] = k--;
   }
 }
-
 int LCP[LOGN][MAXN], msb[MAXN], dollar[MAXN];
 void build_msb() { int mx = -1;
   REP(i, MAXN) { if (i >= (1 << (mx+1))) mx++; msb[i]=mx; }
@@ -50,8 +48,7 @@ void build_LCP_sparse(const string& s) { const int n = SZ(s);
       }
     }
   }
-}
-//O(1) LCP. x & y are indexes of the suffix in SA!
+} //O(1) LCP. x & y are indexes of the suffix in SA!
 int get_lcp(int x,int y) { if (x==y) return dollar[sa[x]]-sa[x];
   if(x > y) { swap(x,y); } y--;
   int idx = msb[y-x+1], sub = (1<<idx);
