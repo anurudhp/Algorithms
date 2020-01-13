@@ -1,8 +1,6 @@
-// Applicable when dp[k][i] =
-// min_{j < i}(dp[k - 1][j] + cost(j, i)) and
-// opt_k(i) <= opt_k(i + 1). This holds when
-// cost(a, d) - cost(a, c) >= cost(b, d) - cost(b, c)
-// call solve(i, 1, n, 1, n) for i = 2 to n after computing dp[1]
+// Works when dp[k][i] = min_{j < i}(dp[k - 1][j] + cost(j, i))
+// and opt_k(i) <= opt_k(i + 1). (This holds when quadrangle)
+// call solve(i, 1, n, 1, n) for i = 2 to n after finding dp[1]
 ll cost(int i, int j); // cost to go from i to j, 1-indexed.
 void solve(int i, int l, int r, int optl, int optr) {
   if (l > r || optl > optr) return;

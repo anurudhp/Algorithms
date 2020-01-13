@@ -1,8 +1,6 @@
 #define until first #define opt second
 // Applicable if dp[i] = min_{j>i}(dp[j] + cost(i,j}) s.t.
-// opt[i] <= opt[j] when i <= j (which holds if
-// cost(a, d) - cost(a, c) >= cost(b, d) - cost(b, c) for
-// a <= b <= c <= d (better to expand smaller segment)
+// opt[i] <= opt[j] when i <= j (which holds if quadrangle)
 ll cost(int i,int j){return dp[j]+/*cost to jump from i to j*/;}
 void solve() { dp[n] = 0;
   vector<PII> v; v.EB(n - 1, n);
