@@ -1,10 +1,10 @@
 const int N = 2e5, LOGN = 20;
-// clear auxNodes, mark, aux; 
+// clear auxNodes, mark; 
 // auxNodes contains nodes of current aux tree 
 vector <PII> g[N], aux[N];  // aux is adjList of auxtree. 
 VI auxNodes;  // dists is distance from 1 to any node. 
 int P[LOGN][N], depth[N], timer, st[N], en[N], n; 
-bool rem[N], mark[N]; //mark contains marked nodes
+bool mark[N]; //mark contains marked nodes
 LL dists[N]; 
 void dfs0 (int v, int par = 1) { 
   P[0][v] = par; st[v] = timer++; //adj list is pair
@@ -37,7 +37,7 @@ int dist(int u, int par){
   return dists[u] - dists[par];
 } 
 int createtree() { 
-  for(auto v: auxNodes) mark[v] = true, rem[v] = true;
+  for(auto v: auxNodes) mark[v] = true;
   sort(ALL(auxNodes), cmp); 
   FOR(i, 0, SZ(auxNodes) - 1) { 
     int lc = LCA(auxNodes[i], auxNodes[i + 1]);
@@ -45,7 +45,7 @@ int createtree() {
     auxNodes.push_back(lc); 
     mark[lc] = true; 
   }
-  sort(ALL(auxNodes), cmp);//***call pre,clear auxNodes,create tree,dfs
+  sort(ALL(auxNodes), cmp);//***call pre,clear auxNodes & mask,create tree
   for(int u: auxNodes) aux[u].clear(); 
   stack <int> sta; sta.push(auxNodes[0]);
   FOR(i, 1, SZ(auxNodes)){
