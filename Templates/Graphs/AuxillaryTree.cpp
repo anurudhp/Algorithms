@@ -45,7 +45,7 @@ int createtree() {
     auxNodes.push_back(lc); 
     mark[lc] = true; 
   }
-  sort(ALL(auxNodes), cmp);//***call pre,clear auxNodes & mask,create tree
+  sort(ALL(auxNodes), cmp);//***call pre,clear auxNodes & mark,create tree
   for(int u: auxNodes) aux[u].clear(); 
   stack <int> sta; sta.push(auxNodes[0]);
   FOR(i, 1, SZ(auxNodes)){
