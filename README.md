@@ -1,17 +1,17 @@
-Collection of templates/algorithms
+Collection of templates/algorithms for Competitive Programming
+==============================================================
 
-Disclaimer
-===========
-The authors in no way guarentee correctness of the code provided. Code is written solely for use by the authors, specifically for ICPC, and does not follow any coding standards.  
-Please use at your own risk. If you do face any issues, feel free to report them.
+This repository contains templates that are not readily available in other reputed sources.
 
-Important
-=================
-- For optimal printing, use <= 65 characters per line
-- Indentation - Use 2 spaces
-- Compress code carefully, choose compression that reduces potential typos
+Legacy
+------
+For the old ICPC notebook used by team `tesla_protocol`/`Tesla`, check the folder `old_content`.
 
-Printing
-=================
-- `make install`: Sets up the generator
-- `make`: generates notebook as `./notebook.pdf`
+Other Resources
+---------------
+
+- [kth/kactl](https://github.com/kth-competitive-programming/kactl/)
+- [cp-algorithms](https://cp-algorithms.com/)
+- [yosupo06/Algorithm](https://github.com/yosupo06/Algorithm)
+
+
