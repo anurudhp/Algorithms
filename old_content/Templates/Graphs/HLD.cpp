@@ -1,7 +1,7 @@
 vector<PII> g[MAXN];
 const int null_val = INT_MIN; //null value eg. -inf for max
-int head[MAXN], pos[MAXN], sz[MAXN], par[MAXN], idx = 0;
-//init sz=subtree size, par=parent node, call hld(root, -1, 1, null_val);
+int head[MAXN], pos[MAXN], sz[MAXN], par[MAXN], h[MAXN], idx = 0;
+//init sz=subtree size, par=parent node, h=node depth, call hld(root, -1, root, null_val);
 void hld(int u, int par, int headno, int edgeval) {
   // remove edgeval if values are on nodes
   head[u] = headno; pos[u] = idx++;
